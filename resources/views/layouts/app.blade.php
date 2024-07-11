@@ -37,7 +37,66 @@
                         <a class="btn btn-ghost col-span-1 text-5xl" href="{{route('LongTermTasks')}}">Long-term tasks</a>
                     </div>
                 </div>
-                {{ $slot }}
+                <div class=" mt-6 w-full ">
+                    <div class="grid grid-cols-6 grid-rows-6 gap-4 m-24">
+                        <!-- Wide Column -->
+                        {{$slot}}
+                        <!-- Narrow Column -->
+                        <div class="col-span-2 row-span-3 bg-white p-4 shadow-lg " >
+
+                            <div class="text-center m-24 ">
+                                <div class="avatar ">
+                                    <div class="size-48 rounded-full">
+                                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="text-center m-6 border-b text-5xl">
+                                <p> Username </p>
+                            </div>
+                            <div>
+                                <div class="text-3xl text-center m-7">Status</div>
+                                <div class="w-full max-w-xl mx-auto">
+                                    <div class="w-full  rounded-full h-6 ">
+                                        <div id="progress-bar" class="h-6 rounded-full " ></div>
+                                    </div>
+                                    <div  class="text-center text-xl mt-2" id="points">0 points</div>
+                                </div>
+
+
+                            </div>
+
+                            <div id="status-text" class="text-4xl text-center m-7">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const points = 100; // Example points data
+                        const progressBar = document.getElementById('progress-bar');
+                        const statusText = document.getElementById('status-text');
+
+                        // Update progress bar color based on points
+                        if (points >= 700) {
+                            progressBar.classList.add('bg-green-400');
+                            statusText.textContent = 'You are doing great!';
+                        } else if (points >= 300) {
+                            progressBar.classList.add('bg-orange-400');
+                            statusText.textContent = 'You are doing OK!';
+                        } else {
+                            progressBar.classList.add('bg-red-600');
+                            statusText.textContent = 'You are doing horrible!';
+                        }
+
+                        // Update points text
+                        document.getElementById('points').textContent = points + ' points';
+                    });
+                </script>
             </main>
         </div>
     </body>
