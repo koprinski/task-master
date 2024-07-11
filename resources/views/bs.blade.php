@@ -3,34 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Two Columns Layout</title>
+    <title>Dynamic Text Block</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
-
-<!-- Header -->
-<header class="bg-blue-500 text-white p-4">
-    <nav class="container mx-auto flex justify-between">
-        <a href="page1.html" class="hover:underline">Page 1</a>
-        <a href="page2.html" class="hover:underline">Page 2</a>
-        <a href="page3.html" class="hover:underline">Page 3</a>
-    </nav>
-</header>
-
-<!-- Main Content -->
-<div class="container mx-auto mt-6 flex">
-    <!-- Wide Column -->
-    <div class="w-3/4 bg-white p-4 shadow-lg" style="width: 8000px;">
-        <h2 class="text-xl font-bold mb-4">Wide Column</h2>
-        <p>This is the wide column. You can put more content here.</p>
+<body class="bg-gray-100 p-6">
+<div class="container mx-auto">
+    <div class="mb-4">
+        <input id="inputText" type="text" placeholder="Enter text" class="border border-gray-300 p-2 rounded w-full">
+        <button onclick="createTextBlock()" class="mt-2 btn bg-blue-500 text-white p-2 rounded">Create Text Block</button>
     </div>
-
-    <!-- Narrow Column -->
-    <div class="w-1/4 bg-white p-4 shadow-lg ml-6" style="width: 1200px;">
-        <h2 class="text-xl font-bold mb-4">Narrow Column</h2>
-        <p>This is the narrow column. You can put additional content here.</p>
-    </div>
+    <div id="textBlockContainer" class="space-y-4"></div>
 </div>
 
+<script>
+    function createTextBlock() {
+        const inputText = document.getElementById('inputText').value;
+        if (inputText.trim() === '') {
+            alert('Please enter some text');
+            return;
+        }
+
+        const container = document.getElementById('textBlockContainer');
+
+        const textBlock = document.createElement('div');
+        textBlock.className = 'relative mockup-window border-base-300 border bg-green-100';
+
+        const textDiv = document.createElement('div');
+        textDiv.className = 'border-base-300 flex text-left text-3xl border-t px-4 py-16 mb-8 uppercase';
+        textDiv.innerText = inputText;
+
+        const minusButton = document.createElement('button');
+        minusButton.className = 'btn size-12 text-4xl bg-red-600 absolute bottom-4 right-20';
+        minusButton.innerText = '-';
+
+        const plusButton = document.createElement('button');
+        plusButton.className = 'btn size-12 text-4xl bg-green-400 absolute bottom-4 right-4';
+        plusButton.innerText = '+';
+
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'btn text-2xl bg-red-400 absolute bottom-4 left-4';
+        deleteButton.innerText = 'DELETE HABIT';
+        deleteButton.onclick = function () {
+            container.removeChild(textBlock);
+        };
+
+        textBlock.appendChild(textDiv);
+        textBlock.appendChild(minusButton);
+        textBlock.appendChild(plusButton);
+        textBlock.appendChild(deleteButton);
+
+        container.appendChild(textBlock);
+
+        document.getElementById('inputText').value = '';
+    }
+</script>
 </body>
 </html>

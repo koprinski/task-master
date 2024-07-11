@@ -23,6 +23,9 @@ Route::get('/DailyTasks', function () {
 Route::get('/LongTermTasks', function () {
     return view('Long_term_tasks');
 }) -> name('LongTermTasks');
+Route::get('/insertH', function () {
+    return view('insertHabit');
+}) -> name('insertH');
 
 Route::get('/test', [TestController::class, 'index']);
 Route::get('/test/{id}', [TestController::class, 'show']);
