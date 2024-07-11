@@ -24,9 +24,9 @@
             function addHabitBlock(habitName) {
                 const habitsContainer = document.getElementById('habits-container');
                 const habitBlock = document.createElement('div');
-                habitBlock.className = "relative mockup-window border-base-300 border bg-green-100 mt-10";
+                habitBlock.className = "relative mockup-window border-base-300 border bg-green-100 mb-24";
                 habitBlock.innerHTML = `
-                    <div class="border-base-300 flex text-left text-3xl border-t px-4 py-16 mb-8 uppercase ">
+                    <div class="border-base-300 flex text-left text-3xl border-t px-4 py-16 mb-8 uppercase">
                         ${habitName}
                     </div>
                     <button class="btn size-12 text-4xl bg-red-600 absolute bottom-4 right-20">-</button>

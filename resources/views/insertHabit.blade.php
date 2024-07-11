@@ -23,7 +23,14 @@
 </div>
 
 <script>
-    document.getElementById('createButton').addEventListener('click', function() {
+    document.getElementById('createButton').addEventListener('click', addHabit);
+    document.getElementById('textInput').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            addHabit();
+        }
+    });
+
+    function addHabit() {
         const habitName = document.getElementById('textInput').value;
         if (habitName) {
             // Retrieve habits from localStorage
@@ -37,7 +44,7 @@
         } else {
             alert('Please enter a habit name.');
         }
-    });
+    }
 </script>
 </body>
 </html>
