@@ -18,7 +18,7 @@ Route::get('/Habbits', function () {
     return view('Habbits') ;
 }) -> name('Habbits');  ;
 Route::get('/DailyTasks', function () {
-    return view('Daily_tasks');
+    return view('Daily_tasks', ['pageName' => 'DailyTasks']);
 }) -> name('DailyTasks');
 Route::get('/LongTermTasks', function () {
     return view('Long_term_tasks');
