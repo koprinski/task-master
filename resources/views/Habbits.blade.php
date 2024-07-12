@@ -40,12 +40,55 @@
                     deleteHabit(habitName);
                     habitBlock.remove();
                 });
+                habitBlock.querySelector('.bg-green-400').addEventListener('click', () => {
+                    addPoints();
+                });
+                habitBlock.querySelector('.bg-red-600').addEventListener('click', () => {
+                    removePoints();
+                });
             }
 
             function deleteHabit(habitName) {
                 let habits = JSON.parse(localStorage.getItem('habits')) || [];
                 habits = habits.filter(habit => habit !== habitName);
                 localStorage.setItem('habits', JSON.stringify(habits));
+            }
+
+            function addPoints() {
+                let points = parseInt(localStorage.getItem("points"), 10) || 0;
+                points += 50;
+                localStorage.setItem("points", points.toString());
+                updatePointsDisplay(points);
+            }
+
+            function removePoints() {
+                let points = parseInt(localStorage.getItem("points"), 10) || 0;
+                points -= 100;
+                localStorage.setItem("points", points.toString());
+                updatePointsDisplay(points);
+            }
+
+            function updatePointsDisplay(points) {
+                const progressBar = document.getElementById('progress-bar');
+                const statusText = document.getElementById('status-text');
+
+                // Update points text
+                document.getElementById('points').textContent = points + ' points';
+
+                // Clear previous classes
+                progressBar.classList.remove('bg-green-400', 'bg-orange-400', 'bg-red-600');
+
+                // Update progress bar color based on points
+                if (points >= 700) {
+                    progressBar.classList.add('bg-green-400');
+                    statusText.textContent = 'You are doing great!';
+                } else if (points >= 300) {
+                    progressBar.classList.add('bg-orange-400');
+                    statusText.textContent = 'You are doing OK!';
+                } else {
+                    progressBar.classList.add('bg-red-600');
+                    statusText.textContent = 'You are doing horrible!';
+                }
             }
         });
     </script>

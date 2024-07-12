@@ -8,6 +8,7 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/views/*.blade.php',
+        "./node_modules/flowbite/**/*.js"
     ],
 
     theme: {
@@ -21,7 +22,7 @@ export default {
 
     plugins: [
         require('daisyui'),
-
+        require('flowbite/plugin')
 
     ],
 };

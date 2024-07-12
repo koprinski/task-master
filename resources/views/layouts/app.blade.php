@@ -77,7 +77,8 @@
                 </div>
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
-                        const points = 500; // Example points data
+                        // localStorage.setItem("points", 1000);
+                        let points = parseInt(localStorage.getItem("points"));// Example points data
                         const progressBar = document.getElementById('progress-bar');
                         const statusText = document.getElementById('status-text');
 

@@ -17,8 +17,8 @@
 <body class="h-screen bg-gradient-to-r from-green-500 to-blue-300">
 <h1 class="justify-center text-center text-7xl p-24">Create a new Habit</h1>
 <div class="justify-center text-center text-6xl">
-    <label>Habit Name:</label>
-    <input id="textInput" class="border border-black bg-green-100" type="text"><br><br>
+
+    <input id="textInput" class="border border-black bg-green-100 text-4xl" placeholder="Task Name" type="text"><br><br>
     <input id="createButton" class="btn text-4xl bg-green-400 size-40 border rounded-3xl border-black" type="submit" value="Add">
 </div>
 
