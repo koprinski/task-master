@@ -41,7 +41,7 @@
 
         </div>
 
-        <a class="btn size-24 text-5xl bg-green-400  ml-48" href="{{ route('insertD') }}"> +</a>
+        <div class="text-center"><a class="btn size-24 text-5xl bg-green-400" href="{{ route('insertD') }}"> +</a></div>
     </div>
 
     </div>

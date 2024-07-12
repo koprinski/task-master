@@ -42,7 +42,9 @@
 
         </div>
 
-        <a class="btn size-24 text-5xl bg-green-400  ml-48" href="{{ route('insertH') }}"> +</a>
+        <div class="text-center">
+            <a class="btn size-24 text-5xl bg-green-400  items-center" href="{{ route('insertH') }}"> +</a>
+        </div>
     </div>
 
     </div>

@@ -15,8 +15,8 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     </head>
-    <body class="font-sans antialiased ">
-        <div class="min-h-screen max-h-[100px] bg-gradient-to-r from-green-300 to-blue-300">
+    <body class="font-sans antialiased overflow-hidden">
+        <div class=" bg-gradient-to-r from-green-300 to-blue-300">
 {{--            @include('layouts.navigation')--}}
 
             <!-- Page Heading -->
