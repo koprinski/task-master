@@ -25,7 +25,7 @@
                         ${taskNameL}
                     </div>
                      <button class="btn  text-2xl bg-green-400  absolute bottom-4 right-4">COMPLETE TASK</button>
-                    <button class="btn text-2xl bg-red-400 absolute bottom-4 left-4">DELETE HABIT</button>
+                    <button class="btn text-2xl bg-red-400 absolute bottom-4 left-4">DELETE TASK</button>
                 `;
                 taskContainerL.appendChild(taskBlockL);
 
