@@ -36,14 +36,14 @@
     });
 
     function addTask() {
-        const taskName = document.getElementById('textInput').value;
-        if (taskName) {
+        const taskNameL = document.getElementById('textInput').value;
+        if (taskNameL) {
             // Retrieve habits from localStorage
-            let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            let tasksL = JSON.parse(localStorage.getItem('tasksL')) || [];
             // Add new habit to the array
-            tasks.push(taskName);
+            tasksL.push(taskNameL);
             // Save updated habits array to localStorage
-            localStorage.setItem('tasks', JSON.stringify(tasks));
+            localStorage.setItem('tasksL', JSON.stringify(tasksL));
             // Redirect back to the Habbits page
             window.location.href = '{{ route('LongTermTasks') }}';
         } else {

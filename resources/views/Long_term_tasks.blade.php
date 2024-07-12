@@ -36,10 +36,10 @@
                 });
             }
 
-            function deleteTask(taskName) {
-                let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-                tasks = tasks.filter(task => task !== taskName);
-                localStorage.setItem('tasks', JSON.stringify(tasks));
+            function deleteTask(taskNameL) {
+                let tasksL = JSON.parse(localStorage.getItem('tasksL')) || [];
+                tasksL = tasksL.filter(taskL => taskL !== taskNameL);
+                localStorage.setItem('tasks', JSON.stringify(tasksL));
             }
         });
     </script>
