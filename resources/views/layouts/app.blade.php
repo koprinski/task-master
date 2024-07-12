@@ -77,7 +77,7 @@
                 </div>
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
-                        const points = 100; // Example points data
+                        const points = 500; // Example points data
                         const progressBar = document.getElementById('progress-bar');
                         const statusText = document.getElementById('status-text');
 

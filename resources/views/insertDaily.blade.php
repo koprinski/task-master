@@ -15,9 +15,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="h-screen bg-gradient-to-r from-green-500 to-blue-300">
-<h1 class="justify-center text-center text-7xl p-24">Create a new Habit</h1>
+<h1 class="justify-center text-center text-7xl p-24">Create a new Daily Task</h1>
 <div class="justify-center text-center text-6xl">
-    <label>Habit Name:</label>
+    <label>Task Name:</label>
     <input id="textInput" class="border border-black bg-green-100" type="text"><br><br>
     <input id="createButton" class="btn text-4xl bg-green-400 size-40 border rounded-3xl border-black" type="submit" value="Add">
 </div>
@@ -28,26 +28,26 @@
         document.getElementById('textInput').focus();
     };
 
-    document.getElementById('createButton').addEventListener('click', addHabit);
+    document.getElementById('createButton').addEventListener('click', addTask);
     document.getElementById('textInput').addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
-            addHabit();
+            addTask();
         }
     });
 
-    function addHabit() {
-        const habitName = document.getElementById('textInput').value;
-        if (habitName) {
+    function addTask() {
+        const taskName = document.getElementById('textInput').value;
+        if (taskName) {
             // Retrieve habits from localStorage
-            let habits = JSON.parse(localStorage.getItem('habits')) || [];
+            let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
             // Add new habit to the array
-            habits.push(habitName);
+            tasks.push(taskName);
             // Save updated habits array to localStorage
-            localStorage.setItem('habits', JSON.stringify(habits));
+            localStorage.setItem('tasks', JSON.stringify(tasks));
             // Redirect back to the Habbits page
-            window.location.href = '{{ route('Habbits') }}';
+            window.location.href = '{{ route('DailyTasks') }}';
         } else {
-            alert('Please enter a habit name.');
+            alert('Please enter a task name.');
         }
     }
 </script>

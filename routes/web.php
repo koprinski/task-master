@@ -26,6 +26,12 @@ Route::get('/LongTermTasks', function () {
 Route::get('/insertH', function () {
     return view('insertHabit');
 }) -> name('insertH');
+Route::get('/insertD', function () {
+    return view('insertDaily');
+}) -> name('insertD');
+Route::get('/insertL', function () {
+    return view('insertLong');
+}) -> name('insertL');
 
 Route::get('/test', [TestController::class, 'index']);
 Route::get('/test/{id}', [TestController::class, 'show']);
