@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>TaskMaster</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="/icon.ico">
 </head>
 <body class="bg-gradient-to-r from-green-300 to-blue-300 flex items-center justify-center min-h-screen p-6">
 <div class="max-w-3xl w-full min-h-[100vh] bg-white shadow-md rounded-lg p-8 flex flex-col justify-between">

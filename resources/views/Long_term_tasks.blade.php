@@ -1,5 +1,5 @@
 <x-app-layout class="btn size-24 text-5xl bg-green-400  items-center" href="{{ route('insertL') }}">
-
+    @section('title', 'Long-term tasks')
     <div class="relative col-span-4 row-span-4 bg-white p-4 mr-4 shadow-lg max-h-[700px] overflow-scroll ">
         <h2 class="text-4xl font-bold mb-4">Long-term tasks</h2>
         <div id="task-container"></div>
@@ -15,6 +15,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Retrieve habits from localStorage
             const tasksL = JSON.parse(localStorage.getItem('tasksL')) || [];
+            const tasksLD = JSON.parse(localStorage.getItem('tasksLD')) || [];
+
             tasksL.forEach(taskL => addDailyTaskBlock(taskL));
 
             function addDailyTaskBlock(taskNameL) {

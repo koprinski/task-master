@@ -1,6 +1,6 @@
 <x-app-layout class="btn size-24 text-5xl bg-green-400  items-center" href="{{ route('insertD') }}">
 
-
+    @section('title', 'Daily Tasks')
     <div class="relative col-span-4 row-span-4 bg-white p-4 mr-4 shadow-lg max-h-[700px] overflow-scroll ">
         <h2 class="text-4xl font-bold mb-4">Daily tasks</h2>
 
