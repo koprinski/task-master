@@ -42,7 +42,45 @@
                         <!-- Wide Column -->
                         {{$slot}}
                         <!-- Narrow Column -->
+                        <div class="col-span-2 m row-span-3 bg-white p-4 shadow-lg max-w-4xl ml-6 i " >
+                           <div class="flex justify-center items-center">
+                               <a href="/">
+                                   <img src="/logo.png" alt="sad" class="h-[100px] w-[350px]">
+                               </a>
+                           </div>
+                            <div class="text-center m-4 ">
+                                <div class="avatar ">
+                                    <div class="size-24 rounded-full">
+                                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                    </div>
 
+                                </div>
+                            </div>
+                            <div class="text-center m-6 border-b text-3xl">
+                                <p> Username </p>
+                            </div>
+                            <div>
+                                <div class="text-3xl text-center m-7">Status</div>
+                                <div class="w-full max-w-xl mx-auto">
+                                    <div class="w-full  rounded-full h-6 ">
+                                        <div id="progress-bar" class="h-6 rounded-full " ></div>
+                                    </div>
+                                    <div  class="text-center text-xl mt-2" id="points">0 points</div>
+                                </div>
+
+
+                            </div>
+
+                            <div id="status-text" class="text-4xl text-center m-7">
+
+                            </div>
+
+                            <div class="text-center">
+                                <a {{$attributes}}> +</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
                         // localStorage.setItem("points", 1000);

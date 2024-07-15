@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout class="btn size-24 text-5xl bg-green-400  items-center" href="{{ route('insertH') }}">
     <div class="relative col-span-4 row-span-4 bg-white p-4 mr-4 shadow-lg max-h-[700px] overflow-scroll ">
         <h2 class="text-4xl font-bold mb-4">Habits</h2>
 
@@ -13,42 +13,9 @@
 
         </div>
     </div>
-    <div class="col-span-2 m row-span-3 bg-white p-4 shadow-lg max-w-4xl ml-6 i " >
-
-        <div class="text-center m-4 ">
-            <div class="avatar ">
-                <div class="size-24 rounded-full">
-                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                </div>
-
-            </div>
-        </div>
-        <div class="text-center m-6 border-b text-3xl">
-            <p> Username </p>
-        </div>
-        <div>
-            <div class="text-3xl text-center m-7">Status</div>
-            <div class="w-full max-w-xl mx-auto">
-                <div class="w-full  rounded-full h-6 ">
-                    <div id="progress-bar" class="h-6 rounded-full " ></div>
-                </div>
-                <div  class="text-center text-xl mt-2" id="points">0 points</div>
-            </div>
 
 
-        </div>
 
-        <div id="status-text" class="text-4xl text-center m-7">
-
-        </div>
-
-        <div class="text-center">
-            <a class="btn size-24 text-5xl bg-green-400  items-center" href="{{ route('insertH') }}"> +</a>
-        </div>
-    </div>
-
-    </div>
-    </div>
 
     <!-- Include the script to handle habit block creation -->
     <script>
