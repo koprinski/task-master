@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Daily_tasks extends Model
 {
     use HasFactory;
+
+
+    protected $fillable=[
+        'id',
+        'daily_task',
+    ];
 }

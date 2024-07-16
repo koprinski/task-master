@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\DailyTaskControler;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/w', function () {
@@ -50,6 +51,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
+Route::get('Dayli',[DailyTaskControler::class,'store']);
 
 require __DIR__.'/auth.php';

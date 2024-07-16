@@ -18,7 +18,7 @@
 <h1 class="justify-center text-center text-7xl p-24">Create a new Daily Task</h1>
 <div class="justify-center text-center text-6xl">
 
-    <input id="textInput" class="border border-black bg-green-100 text-4xl" type="text" placeholder="Task Name" name="taskn_name"><br><br>
+    <input id="textInput" class="border border-black bg-green-100 text-4xl" type="text" placeholder="Task Name" name="task_name"><br><br>
     <input id="createButton" class="btn text-4xl bg-green-400 size-40 border rounded-3xl border-black" type="submit" value="Add">
 </div>
 
