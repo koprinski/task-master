@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" >
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,6 +40,20 @@
                 <div class=" mt-6 w-full ">
                     <div class="grid grid-cols-6 grid-rows-6 gap-4 m-24">
                         <!-- Wide Column -->
+                        <div class="relative col-span-4 row-span-4 bg-white p-4 mr-4 shadow-lg max-h-[700px] overflow-scroll ">
+                            <h2 class="text-4xl font-bold mb-4">@yield('header')</h2>
+
+                            {{-- The block needs to appear here --}}
+                            <div id="@yield('container')">
+                                <!-- Dynamic habit blocks will be inserted here -->
+                            </div>
+
+                            <p class="text-2xl mt-10">Click the + button to add a new habit.</p>
+
+                            <div>
+
+                            </div>
+                        </div>
                         {{$slot}}
                         <!-- Narrow Column -->
                         <div class="col-span-2 m row-span-3 bg-white p-4 shadow-lg max-w-4xl ml-6 i " >
@@ -49,11 +63,22 @@
                                </a>
                            </div>
                             <div class="text-center m-4 ">
-                                <div class="avatar ">
-                                    <div class="size-24 rounded-full">
-                                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                                    </div>
-
+                                <div class="avatar relative w-24 h-24">
+                                    <!-- Link wrapper to make the entire avatar clickable -->
+                                    <a href="/" class="block w-full h-full relative group">
+                                        <!-- Avatar image -->
+                                        <img
+                                            class="w-full h-full object-cover rounded-full transition duration-300 ease-in-out group-hover:filter group-hover:grayscale-[80%]"
+                                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                                            alt="Avatar"
+                                        />
+                                        <!-- Upload icon -->
+                                        <img
+                                            class="max-h-12 max-w-12 absolute  bottom-7 right-6 hidden group-hover:block"
+                                            src="https://www.svgrepo.com/show/33565/upload.svg"
+                                            alt="Upload Icon"
+                                        />
+                                    </a>
                                 </div>
                             </div>
                             <div class="text-center m-6 border-b text-3xl">

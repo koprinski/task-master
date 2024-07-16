@@ -4,3 +4,12 @@
     <button class="btn  text-2xl bg-green-400  absolute bottom-4 right-4">COMPLETE TASK</button>
     <button class="btn text-2xl bg-red-400 absolute bottom-4 left-4">DELETE TASK</button>
 </div>
+
+<div class="avatar ">
+    <div class="size-24 rounded-full">
+        <a href="/">
+            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+        </a>
+    </div>
+
+</div>
