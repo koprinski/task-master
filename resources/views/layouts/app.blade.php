@@ -57,7 +57,8 @@
                                 </div>
                             </div>
                             <div class="text-center m-6 border-b text-3xl">
-                                <p> Username </p>
+                                <p> <?php $id = Auth::user()->name;;
+                                    echo $id;?></p>
                             </div>
                             <div>
                                 <div class="text-3xl text-center m-7">Status</div>
@@ -84,7 +85,8 @@
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
                         // localStorage.setItem("points", 1000);
-                        let points = parseInt(localStorage.getItem("points"));// Example points data
+                        let points = parseInt(<?php $points = Auth::user()->points;;
+                                              echo $points;?>);// Example points data
                         const progressBar = document.getElementById('progress-bar');
                         const statusText = document.getElementById('status-text');
 

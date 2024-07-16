@@ -14,7 +14,6 @@
     </div>
 
 
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Retrieve habits from localStorage

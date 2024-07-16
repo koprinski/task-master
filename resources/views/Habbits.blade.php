@@ -18,6 +18,7 @@
 
 
 
+
     <!-- Include the script to handle habit block creation -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
