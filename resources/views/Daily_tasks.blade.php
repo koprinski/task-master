@@ -24,7 +24,7 @@
             function addDailyTaskBlock(taskName) {
                 const taskContainer = document.getElementById('task-container');
                 const taskBlock = document.createElement('div');
-                taskBlock.className = "relative mockup-window border-base-300 border bg-green-100 mb-24";
+                taskBlock.className = "relative mockup-window border-base-300 border bg-green-100 mb-10";
                 taskBlock.innerHTML = `
                     <div class="border-base-300 flex text-left text-3xl border-t px-4 py-16 mb-8 uppercase">
                         ${taskName}

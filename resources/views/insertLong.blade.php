@@ -22,7 +22,7 @@
     <div class="flex justify-center ">
 
 
-            <input datepicker id="datepicker" type="text" class="border border-black bg-green-100 text-4xl" placeholder="Select date">
+            <input datepicker id="datepicker" type="text" class="border border-black bg-green-100 text-4xl" placeholder="Select date" readonly>
 
 
     </div>
