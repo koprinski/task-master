@@ -22,9 +22,7 @@ Route::get('/bs', function () {
 Route::get('/Habbits', function () {
     return view('Habbits') ;
 }) -> name('Habbits');  ;
-Route::get('/DailyTasks', function () {
-    return view('Daily_tasks', ['pageName' => 'DailyTasks']);
-}) -> name('DailyTasks');
+Route::get('/DailyTasks', [DailyTaskControler::class, 'serch']) -> name('daily-tasks');
 Route::get('/LongTermTasks', function () {
     return view('Long_term_tasks');
 }) -> name('LongTermTasks');
@@ -51,6 +49,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('Dayli',[DailyTaskControler::class,'store']);
+Route::get('Dayli', [DailyTaskControler::class, 'store']);
 
 require __DIR__.'/auth.php';

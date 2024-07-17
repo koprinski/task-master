@@ -9,22 +9,20 @@ use Illuminate\Support\Facades\DB;
 
 class DailyTaskControler extends Controller
 {
-public function serch()
-{
+    public function serch() {
+        $arr = Daily_tasks::all();
+        $id = Auth::user()->id;
+        $array = [];
 
-    $arr = Daily_tasks::all();
-    $id = Auth::user()->id;;
-
-    for ($i = 0; $i < count($arr); $i++) {
-        $temp = $arr[$i];
-        if ($id == $temp->id) {
-            echo "task " . $temp->daily_task;
-            break;
+        foreach ($arr as $task) {
+            if ($id == $task->id) {
+                $array[] = $task->daily_task;
+            }
         }
-    }
 
-    return view('welcome');
-}
+        $aaa = json_encode($array);
+        return view('Daily_tasks', compact('aaa'));
+    }
     public function store(Request $request)
     {
         $id = Auth::user()->id;;

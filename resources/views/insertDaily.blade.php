@@ -46,7 +46,7 @@
             // Save updated habits array to localStorage
             localStorage.setItem('tasks', JSON.stringify(tasks));
             // Redirect back to the Habbits page
-            window.location.href = '{{ route('DailyTasks') }}';
+            window.location.href = '{{ route('daily-tasks') }}';
         } else {
             alert('Please enter a task name.');
         }
