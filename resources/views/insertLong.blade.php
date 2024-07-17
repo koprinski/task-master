@@ -14,7 +14,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="h-screen bg-gradient-to-r from-green-500 to-blue-300">
+<body class="h-screen bg-gradient-to-r from-green-500 to-blue-300 text-black">
 <h1 class="justify-center text-center text-7xl p-24">Create a new Long-term Task</h1>
 <div class="justify-center text-center text-6xl">
 
@@ -26,7 +26,7 @@
 
 
     </div>
-    <input id="createButton" class="btn text-4xl bg-green-400 size-40 border rounded-3xl border-black mt-12" type="submit" value="Add">
+    <input id="createButton" class="btn text-4xl bg-green-400 size-40 border rounded-3xl border-black mt-12 text-black" type="submit" value="Add">
 </div>
 
 

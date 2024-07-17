@@ -1,4 +1,4 @@
-<x-app-layout class="btn size-24 text-5xl bg-green-400  items-center" href="{{ route('insertD') }}">
+<x-app-layout class="btn size-24 text-5xl bg-green-400  items-center text-black" href="{{ route('insertD') }}">
 
     @section('title', 'Daily Tasks') @section('header', 'Daily tasks') @section('container','task-container')
     <script>
@@ -15,8 +15,8 @@
                     <div class="border-base-300 flex text-left text-3xl border-t px-4 py-16 mb-8 uppercase">
                         ${taskName}
                     </div>
-                     <button class="btn  text-2xl bg-green-400  absolute bottom-4 right-4">COMPLETE TASK</button>
-                    <button class="btn text-2xl bg-red-400 absolute bottom-4 left-4">DELETE TASK</button>
+                     <button class="btn  text-2xl bg-green-400  absolute bottom-4 right-4 text-black" >COMPLETE TASK</button>
+                    <button class="btn text-2xl bg-red-400 absolute bottom-4 left-4 text-black">DELETE TASK</button>
                 `;
                 taskContainer.appendChild(taskBlock);
 

@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/w', function () {
     return view('welcome');
 });
+Route::get('/iU', function () {
+    return view('insertUserName');
+}) -> name('insertUserName');
 
 Route::get('/', function () {
     return view('index');
