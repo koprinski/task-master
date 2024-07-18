@@ -3,8 +3,7 @@
     @section('title', 'Daily Tasks') @section('header', 'Daily tasks') @section('container','task-container')@section('content', 'Click the + button to add a new task.')
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Retrieve habits from localStorage
-            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            const tasks = JSON.parse(@json($aaa)) || [];
             tasks.forEach(task => addDailyTaskBlock(task));
 
             function addDailyTaskBlock(taskName) {
@@ -15,20 +14,20 @@
                     <div class="border-base-300 flex text-left text-3xl border-t px-4 py-16 mb-8 uppercase">
                         ${taskName}
                     </div>
-                     <button class="btn  text-xl bg-green-400  absolute bottom-4 right-4 text-black" >COMPLETE </button>
-                    <button class="btn text-xl bg-red-400 absolute bottom-4 left-4 text-black">DELETE </button>
+                    <form action="{{ route('daily-tasks-delete') }}" method="GET">
+                        @csrf
+                <input type="hidden" name="task_name" value="${taskName}">
+                        <button type="submit" class="btn text-2xl bg-red-400 absolute bottom-4 left-4">DELETE TASK</button>
+                    </form>
+                    <button class="btn text-2xl bg-green-400 absolute bottom-4 right-4">COMPLETE TASK</button>
                 `;
                 taskContainer.appendChild(taskBlock);
 
-                // Add delete habit event
-                taskBlock.querySelector('.bg-red-400').addEventListener('click', () => {
-                    deleteTask(taskName);
-                    taskBlock.remove();
-                });
+                // Add event listener for the complete task button
                 taskBlock.querySelector('.bg-green-400').addEventListener('click', () => {
                     addPoints();
                     deleteTask(taskName);
-                    taskBlock.remove();
+                   // taskBlock.remove();
                 });
             }
 
@@ -37,16 +36,10 @@
                 tasks = tasks.filter(task => task !== taskName);
                 localStorage.setItem('tasks', JSON.stringify(tasks));
             }
+
             function addPoints() {
                 let points = parseInt(localStorage.getItem("points"), 10) || 0;
                 points += 100;
-                localStorage.setItem("points", points.toString());
-                updatePointsDisplay(points);
-            }
-
-            function removePoints() {
-                let points = parseInt(localStorage.getItem("points"), 10) || 0;
-                points -= 100;
                 localStorage.setItem("points", points.toString());
                 updatePointsDisplay(points);
             }

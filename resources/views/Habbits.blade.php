@@ -1,6 +1,7 @@
-<x-app-layout class="btn size-24 text-5xl bg-green-400  items-center text-black" href="{{ route('insertH') }}">
-    @section('title', 'Habits') @section('header', 'Habits') @section('container','habits-container') @section('content', 'Click the + button to add a new habit.')
-    <!-- Include the script to handle habit block creation -->
+x-app-layout class="btn size-24 text-5xl bg-green-400  items-center text-black" href="{{ route('insertH') }}">
+@section('title', 'Habits') @section('header', 'Habits') @section('container','habits-container') @section('content', 'Click the + button to add a new habit.')
+<!-- Include the script to handle habit block creation -->
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Retrieve habits from localStorage

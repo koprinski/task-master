@@ -14,11 +14,13 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-screen bg-gradient-to-r from-green-500 to-blue-300 text-black flex flex-col items-center justify-center">
-<h1 class="text-center text-4xl md:text-7xl p-4 md:p-24">Create a new Daily Task</h1>
-<div class="w-full max-w-md mx-auto px-4">
-    <input id="textInput" class="w-full border border-black bg-green-100 text-lg md:text-4xl p-2 mb-4" type="text" placeholder="Task Name">
-    <input id="createButton" class="w-full btn text-lg md:text-4xl bg-green-400 py-2 border rounded-3xl border-black text-black cursor-pointer" type="submit" value="Add">
+<body class="h-screen bg-gradient-to-r from-green-500 to-blue-300">
+<h1 class="justify-center text-center text-7xl p-24">Create a new Daily Task</h1>
+<div class="justify-center text-center text-6xl">
+<form action="Dayli" method="get">
+    <input id="textInput" class="border border-black bg-green-100 text-4xl" type="text" placeholder="Task Name" name="task_name"><br><br>
+    <input id="createButton" class="btn text-4xl bg-green-400 size-40 border rounded-3xl border-black" type="submit" value="Add">
+</form>
 </div>
 
 <script>
