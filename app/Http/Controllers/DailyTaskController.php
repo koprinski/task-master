@@ -7,7 +7,7 @@ use App\Models\Daily_tasks;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class DailyTaskControler extends Controller
+class DailyTaskController extends Controller
 {
     public function serch() {
         $arr = Daily_tasks::all();
@@ -31,14 +31,28 @@ class DailyTaskControler extends Controller
             'daily_task' => $request->task_name,
         ];
         Daily_tasks::insert($product);
-        if (Daily_tasks::all()->count() != 0) {
-            echo "saved";
-        }
-
         return redirect()->route('daily-tasks');
     }
     public function delete(Request $request)
     {
+        $id = Auth::user()->id;
+        $taskName = $request->task_name;
 
+        // Delete the specific task for the user
+        Daily_tasks::where('user_id', $id)->where('daily_task', $taskName)->delete();
+
+        $arr = Daily_tasks::all();
+        $array = [];
+
+        foreach ($arr as $task) {
+            if ($id == $task->user_id) {
+                $array[] = $task->daily_task;
+            }
+        }
+
+        $aaa = json_encode($array);
+
+        return view('Daily_tasks', compact('aaa'));
     }
+
 }

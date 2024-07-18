@@ -27,22 +27,20 @@
                     <div class="border-base-300 flex text-left text-3xl border-t px-4 py-16 mb-8 uppercase">
                         ${taskName}
                     </div>
-                    <form action="daily-tasks-del" method="get">
-                        <button class="btn text-2xl bg-green-400 absolute bottom-4 right-4" name="complete">COMPLETE TASK</button>
-                        <button class="btn text-2xl bg-red-400 absolute bottom-4 left-4">DELETE TASK</button>
+                    <form action="{{ route('daily-tasks-delete') }}" method="GET">
+                        @csrf
+                <input type="hidden" name="task_name" value="${taskName}">
+                        <button type="submit" class="btn text-2xl bg-red-400 absolute bottom-4 left-4">DELETE TASK</button>
                     </form>
+                    <button class="btn text-2xl bg-green-400 absolute bottom-4 right-4">COMPLETE TASK</button>
                 `;
                 taskContainer.appendChild(taskBlock);
 
-                taskBlock.querySelector('.bg-red-400').addEventListener('click', () => {
-                    deleteTask(taskName);
-                    taskBlock.remove();
-                });
-
+                // Add event listener for the complete task button
                 taskBlock.querySelector('.bg-green-400').addEventListener('click', () => {
                     addPoints();
                     deleteTask(taskName);
-                    taskBlock.remove();
+                   // taskBlock.remove();
                 });
             }
 
@@ -62,8 +60,9 @@
             function updatePointsDisplay(points) {
                 const progressBar = document.getElementById('progress-bar');
                 const statusText = document.getElementById('status-text');
+
                 document.getElementById('points').textContent = points + ' points';
-                progressBar.className = 'progress-bar'; // Reset class
+                progressBar.classList.remove('bg-green-400', 'bg-orange-400', 'bg-red-600');
 
                 if (points >= 700) {
                     progressBar.classList.add('bg-green-400');

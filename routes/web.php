@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
-use App\Http\Controllers\DailyTaskControler;
+use App\Http\Controllers\DailyTaskController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/w', function () {
@@ -22,7 +22,6 @@ Route::get('/bs', function () {
 Route::get('/Habbits', function () {
     return view('Habbits') ;
 }) -> name('Habbits');  ;
-Route::get('/DailyTasks', [DailyTaskControler::class, 'serch']) -> name('daily-tasks');
 Route::get('/LongTermTasks', function () {
     return view('Long_term_tasks');
 }) -> name('LongTermTasks');
@@ -40,7 +39,7 @@ Route::get('/test', [TestController::class, 'index']);
 Route::get('/test/{id}', [TestController::class, 'show']);
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('Habbits');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -49,8 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/daily-tasks', [DailyTaskControler::class, 'serch'])->name('daily-tasks');
-Route::get('Dayli', [DailyTaskControler::class, 'store']);
-Route::get('daily-tasks-del', [DailyTaskControler::class, 'delete']);
+Route::get('/DailyTasks', [DailyTaskController::class, 'serch']) -> name('daily-tasks');
+Route::get('Dayli', [DailyTaskController::class, 'store']);
+Route::get('/daily-tasks-delete', [DailyTaskController::class, 'delete'])->name('daily-tasks-delete');
 
 require __DIR__.'/auth.php';
