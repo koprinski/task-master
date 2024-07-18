@@ -34,7 +34,7 @@
             <div class="navbar grid grid-cols-1 sm:grid-cols-3 gap-4 text-center" >
                 <a class="btn btn-ghost text-3xl" href="{{route('Habbits')}}">Habits</a>
                 <a class="btn btn-ghost text-3xl" href="{{route('DailyTasks')}}">Daily tasks</a>
-                <a class="btn btn-ghost text-3xl" href="{{route('LongTermTasks')}}">Long-term tasks</a>
+                <a class="btn btn-ghost text-3xl" href="{{route('LongTermTasks')}}">Long-term </a>
             </div>
         </div>
         <div class="mt-6 w-full">
@@ -71,7 +71,7 @@
                                 />
                                 <!-- Upload icon -->
                                 <img
-                                    class="max-h-12 max-w-12 absolute bottom-0 right-0 hidden group-hover:block"
+                                    class="max-h-12 max-w-12 absolute bottom-7 right-6 hidden group-hover:block"
                                     src="https://www.svgrepo.com/show/33565/upload.svg"
                                     alt="Upload Icon"
                                 />
