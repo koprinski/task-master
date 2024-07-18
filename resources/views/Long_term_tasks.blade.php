@@ -1,5 +1,5 @@
 <x-app-layout class="btn size-24 text-5xl bg-green-400  items-center text-black" href="{{ route('insertL') }}">
-    @section('title', 'Long-term tasks') @section('header', 'Long-term task') @section('container','task-container')
+    @section('title', 'Long-term tasks') @section('header', 'Long-term task') @section('container','task-container')@section('content', 'Click the + button to add a new task.')
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Retrieve habits from localStorage

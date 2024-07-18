@@ -48,7 +48,7 @@
                         <!-- Dynamic habit blocks will be inserted here -->
                     </div>
 
-                    <p class="text-2xl mt-10">Click the + button to add a new habit.</p>
+                    <p class="text-2xl mt-10">@yield('content')</p>
                 </div>
                 {{$slot}}
                 <!-- Narrow Column -->
