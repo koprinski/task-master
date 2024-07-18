@@ -11,7 +11,7 @@ class Daily_tasks extends Model
 
 
     protected $fillable=[
-        'id',
+        'user_id',
         'daily_task',
     ];
 }

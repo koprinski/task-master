@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('daily_tasks', function (Blueprint $table) {
-            $table->integer('id');
+            $table->id();
+            $table->integer('user_id');
             $table->string("daily_task");
             $table->timestamps();
         });

@@ -15,7 +15,7 @@ class DailyTaskControler extends Controller
         $array = [];
 
         foreach ($arr as $task) {
-            if ($id == $task->id) {
+            if ($id == $task->user_id) {
                 $array[] = $task->daily_task;
             }
         }
@@ -27,7 +27,7 @@ class DailyTaskControler extends Controller
     {
         $id = Auth::user()->id;;
         $product = [
-            'id' => $id,
+            'user_id' => $id,
             'daily_task' => $request->task_name,
         ];
         Daily_tasks::insert($product);
@@ -35,6 +35,10 @@ class DailyTaskControler extends Controller
             echo "saved";
         }
 
-        return view('Daily_tasks',[$DailyTasks = daily_tasks::all()]);
+        return redirect()->route('daily-tasks');
+    }
+    public function delete(Request $request)
+    {
+
     }
 }

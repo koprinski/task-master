@@ -16,7 +16,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Retrieve habits from localStorage
             const tasks = JSON.parse(@json($aaa)) || [];
             tasks.forEach(task => addDailyTaskBlock(task));
 
@@ -25,19 +24,21 @@
                 const taskBlock = document.createElement('div');
                 taskBlock.className = "relative mockup-window border-base-300 border bg-green-100 mb-24";
                 taskBlock.innerHTML = `
-            <div class="border-base-300 flex text-left text-3xl border-t px-4 py-16 mb-8 uppercase">
-                ${taskName}
-            </div>
-            <button class="btn text-2xl bg-green-400 absolute bottom-4 right-4">COMPLETE TASK</button>
-            <button class="btn text-2xl bg-red-400 absolute bottom-4 left-4">DELETE TASK</button>
-        `;
+                    <div class="border-base-300 flex text-left text-3xl border-t px-4 py-16 mb-8 uppercase">
+                        ${taskName}
+                    </div>
+                    <form action="daily-tasks-del" method="get">
+                        <button class="btn text-2xl bg-green-400 absolute bottom-4 right-4" name="complete">COMPLETE TASK</button>
+                        <button class="btn text-2xl bg-red-400 absolute bottom-4 left-4">DELETE TASK</button>
+                    </form>
+                `;
                 taskContainer.appendChild(taskBlock);
 
-                // Add delete habit event
                 taskBlock.querySelector('.bg-red-400').addEventListener('click', () => {
                     deleteTask(taskName);
                     taskBlock.remove();
                 });
+
                 taskBlock.querySelector('.bg-green-400').addEventListener('click', () => {
                     addPoints();
                     deleteTask(taskName);
@@ -50,6 +51,7 @@
                 tasks = tasks.filter(task => task !== taskName);
                 localStorage.setItem('tasks', JSON.stringify(tasks));
             }
+
             function addPoints() {
                 let points = parseInt(localStorage.getItem("points"), 10) || 0;
                 points += 100;
@@ -57,24 +59,12 @@
                 updatePointsDisplay(points);
             }
 
-            function removePoints() {
-                let points = parseInt(localStorage.getItem("points"), 10) || 0;
-                points -= 100;
-                localStorage.setItem("points", points.toString());
-                updatePointsDisplay(points);
-            }
-
             function updatePointsDisplay(points) {
                 const progressBar = document.getElementById('progress-bar');
                 const statusText = document.getElementById('status-text');
-
-                // Update points text
                 document.getElementById('points').textContent = points + ' points';
+                progressBar.className = 'progress-bar'; // Reset class
 
-                // Clear previous classes
-                progressBar.classList.remove('bg-green-400', 'bg-orange-400', 'bg-red-600');
-
-                // Update progress bar color based on points
                 if (points >= 700) {
                     progressBar.classList.add('bg-green-400');
                     statusText.textContent = 'You are doing great!';

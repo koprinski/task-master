@@ -49,6 +49,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/daily-tasks', [DailyTaskControler::class, 'serch'])->name('daily-tasks');
 Route::get('Dayli', [DailyTaskControler::class, 'store']);
+Route::get('daily-tasks-del', [DailyTaskControler::class, 'delete']);
 
 require __DIR__.'/auth.php';
