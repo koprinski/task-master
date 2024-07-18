@@ -10,26 +10,19 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
+    <link rel="icon" href="/icon.ico">
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="h-screen bg-gradient-to-r from-green-500 to-blue-300 text-black">
-<h1 class="justify-center text-center text-7xl p-24">Create a new Long-term Task</h1>
-<div class="justify-center text-center text-6xl">
-
-    <input id="textInput" class="border border-black bg-green-100 text-4xl" type="text"  placeholder="Task Name"><br><br>
-    <div class="flex justify-center ">
-
-
-            <input datepicker id="datepicker" type="text" class="border border-black bg-green-100 text-4xl" placeholder="Select date" readonly>
-
-
+<body class="min-h-screen bg-gradient-to-r from-green-500 to-blue-300 text-black flex flex-col items-start justify-start pt-12">
+<h1 class="text-center w-full text-4xl md:text-7xl p-4 md:p-12">Create a new Long-term Task</h1>
+<div class="w-full max-w-md mx-auto px-4">
+    <input id="textInput" class="w-full border border-black bg-green-100 text-lg md:text-4xl p-2 mb-4" type="text" placeholder="Task Name">
+    <div class="flex justify-center mb-4">
+        <input datepicker id="datepicker" type="text" class="w-full border border-black bg-green-100 text-lg md:text-4xl p-2" placeholder="Select date" readonly>
     </div>
-    <input id="createButton" class="btn text-4xl bg-green-400 size-40 border rounded-3xl border-black mt-12 text-black" type="submit" value="Add">
+    <input id="createButton" class="w-full btn text-lg md:text-4xl bg-green-400 py-2 border rounded-3xl border-black text-black cursor-pointer" type="submit" value="Add">
 </div>
-
-
 
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 
@@ -48,23 +41,24 @@
 
     function addTask() {
         const taskNameL = document.getElementById('textInput').value;
-        const  taskLDate = document.getElementById('datepicker').value;
+        const taskLDate = document.getElementById('datepicker').value;
         if (taskNameL && taskLDate) {
-            // Retrieve habits from localStorage
+            // Retrieve tasks from localStorage
             let tasksL = JSON.parse(localStorage.getItem('tasksL')) || [];
             let tasksLD = JSON.parse(localStorage.getItem('tasksLD')) || [];
 
-            // Add new habit to the array
+            // Add new task to the array
             tasksL.push(taskNameL);
             tasksLD.push(taskLDate);
-            // Save updated habits array to localStorage
+
+            // Save updated tasks array to localStorage
             localStorage.setItem('tasksL', JSON.stringify(tasksL));
             localStorage.setItem('tasksLD', JSON.stringify(tasksLD));
 
-            // Redirect back to the Habbits page
+            // Redirect back to the LongTermTasks page
             window.location.href = '{{ route('LongTermTasks') }}';
         } else {
-            alert('Please enter a task name.');
+            alert('Please enter a task name and select a date.');
         }
     }
 </script>

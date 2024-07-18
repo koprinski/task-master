@@ -15,8 +15,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
-<body class="font-sans antialiased overflow-hidden">
-<div class=" bg-gradient-to-r from-green-300 to-blue-300">
+<body class="font-sans antialiased">
+<div class="bg-gradient-to-r from-green-300 to-blue-300 min-h-screen">
     {{--            @include('layouts.navigation')--}}
 
     <!-- Page Heading -->
@@ -31,16 +31,16 @@
     <!-- Page Content -->
     <main class="text-black">
         <div class="p-1 bg-green-400">
-            <div class="navbar grid grid-cols-3  " >
-                <a class="btn btn-ghost col-span-1 text-3xl" href="{{route('Habbits')}}">Habits</a>
-                <a class="btn btn-ghost col-span-1 text-3xl" href="{{route('DailyTasks')}}">Daily tasks</a>
-                <a class="btn btn-ghost col-span-1 text-3xl" href="{{route('LongTermTasks')}}">Long-term tasks</a>
+            <div class="navbar grid grid-cols-1 sm:grid-cols-3 gap-4 text-center" >
+                <a class="btn btn-ghost text-3xl" href="{{route('Habbits')}}">Habits</a>
+                <a class="btn btn-ghost text-3xl" href="{{route('DailyTasks')}}">Daily tasks</a>
+                <a class="btn btn-ghost text-3xl" href="{{route('LongTermTasks')}}">Long-term tasks</a>
             </div>
         </div>
-        <div class=" mt-6 w-full ">
-            <div class="grid grid-cols-6 grid-rows-6 gap-4 m-24">
+        <div class="mt-6 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-6 gap-4 px-4">
                 <!-- Wide Column -->
-                <div class="relative col-span-4 row-span-4 bg-white p-4 mr-4 shadow-lg max-h-[700px] overflow-scroll ">
+                <div class="relative col-span-1 lg:col-span-4 bg-white p-4 shadow-lg max-h-[700px] overflow-scroll">
                     <h2 class="text-4xl font-bold mb-4">@yield('header')</h2>
 
                     {{-- The block needs to appear here --}}
@@ -49,21 +49,17 @@
                     </div>
 
                     <p class="text-2xl mt-10">Click the + button to add a new habit.</p>
-
-                    <div>
-
-                    </div>
                 </div>
                 {{$slot}}
                 <!-- Narrow Column -->
-                <div class="col-span-2 m row-span-3 bg-white p-4 shadow-lg max-w-4xl ml-6 i " >
+                <div class="col-span-1 lg:col-span-2 bg-white p-4 shadow-lg">
                     <div class="flex justify-center items-center">
                         <a href="/">
-                            <img src="/logo.png" alt="sad" class="h-[100px] w-[350px]">
+                            <img src="/logo.png" alt="logo" class="h-24 w-auto">
                         </a>
                     </div>
-                    <div class="text-center m-4 ">
-                        <div class="avatar relative w-24 h-24">
+                    <div class="text-center mt-4">
+                        <div class="avatar relative w-24 h-24 mx-auto">
                             <!-- Link wrapper to make the entire avatar clickable -->
                             <a href="#" class="block w-full h-full relative group" id="avatar-link">
                                 <!-- Avatar image -->
@@ -75,7 +71,7 @@
                                 />
                                 <!-- Upload icon -->
                                 <img
-                                    class="max-h-12 max-w-12 absolute  bottom-7 right-6 hidden group-hover:block"
+                                    class="max-h-12 max-w-12 absolute bottom-0 right-0 hidden group-hover:block"
                                     src="https://www.svgrepo.com/show/33565/upload.svg"
                                     alt="Upload Icon"
                                 />
@@ -84,27 +80,22 @@
                             <input type="file" id="avatar-input" class="hidden" accept="image/*">
                         </div>
                     </div>
-                    <div class="text-center m-6 border-b text-3xl">
+                    <div class="text-center mt-6 border-b text-3xl">
                         <a href="{{route('insertUserName')}}"> Username </a>
                     </div>
-                    <div>
-                        <div class="text-3xl text-center m-7">Status</div>
+                    <div class="mt-6">
+                        <div class="text-3xl text-center mb-4">Status</div>
                         <div class="w-full max-w-xl mx-auto">
-                            <div class="w-full  rounded-full h-6 ">
-                                <div id="progress-bar" class="h-6 rounded-full " ></div>
+                            <div class="w-full bg-gray-200 rounded-full h-6">
+                                <div id="progress-bar" class="h-6 rounded-full"></div>
                             </div>
-                            <div  class="text-center text-xl mt-2" id="points">0 points</div>
+                            <div class="text-center text-xl mt-2" id="points">0 points</div>
                         </div>
-
-
                     </div>
-
-                    <div id="status-text" class="text-4xl text-center m-7">
-
+                    <div id="status-text" class="text-4xl text-center mt-6">
                     </div>
-
-                    <div class="text-center">
-                        <a {{$attributes}}> +</a>
+                    <div class="text-center mt-6">
+                        <a {{$attributes}} class="text-3xl"> +</a>
                     </div>
                 </div>
             </div>
