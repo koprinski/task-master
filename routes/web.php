@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -13,9 +13,7 @@ Route::get('/', function () {
 Route::get('/bs', function () {
     return view('bs');
 });
-Route::get('/Habbits', function () {
-    return view('Habbits') ;
-}) -> name('Habbits');  ;
+Route::get('/habits', TaskController::class, 'habits')-> name('habits');  ;
 Route::get('/DailyTasks', function () {
     return view('Daily_tasks', ['pageName' => 'DailyTasks']);
 }) -> name('DailyTasks');
