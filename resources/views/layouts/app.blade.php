@@ -33,8 +33,8 @@
         <div class="p-1 bg-green-400">
             <div class="navbar grid grid-cols-1 sm:grid-cols-3 gap-4 text-center" >
                 <a class="btn btn-ghost text-3xl" href="{{route('habits')}}">Habits</a>
-                <a class="btn btn-ghost text-3xl" href="{{route('DailyTasks')}}">Daily tasks</a>
-                <a class="btn btn-ghost text-3xl" href="{{route('LongTermTasks')}}">Long-term </a>
+                <a class="btn btn-ghost text-3xl" href="{{route('daily')}}">Daily tasks</a>
+                <a class="btn btn-ghost text-3xl" href="{{route('longTerm')}}">Long-term </a>
             </div>
         </div>
         <div class="mt-6 w-full">
@@ -45,12 +45,12 @@
 
                     {{-- The block needs to appear here --}}
                     <div id="@yield('container')">
-                        <!-- Dynamic habit blocks will be inserted here -->
+                        {{$slot}}
                     </div>
 
                     <p class="text-2xl mt-10">@yield('content')</p>
                 </div>
-                {{$slot}}
+
                 <!-- Narrow Column -->
                 <div class="col-span-1 lg:col-span-2 bg-white p-4 shadow-lg">
                     <div class="flex justify-center items-center">

@@ -13,13 +13,9 @@ Route::get('/', function () {
 Route::get('/bs', function () {
     return view('bs');
 });
-Route::get('/habits/{habit}', [TaskController::class, 'habits'])-> name('habits');  ;
-Route::get('/DailyTasks', function () {
-    return view('Daily_tasks', ['pageName' => 'DailyTasks']);
-}) -> name('DailyTasks');
-Route::get('/LongTermTasks', function () {
-    return view('Long_term_tasks');
-}) -> name('LongTermTasks');
+Route::get('/habits/', [TaskController::class, 'habits'])-> name('habits');  ;
+Route::get('/daily', [TaskController::class, 'dailyTasks'])-> name('daily');
+Route::get('/longTerm', [TaskController::class, 'longTermTasks'])-> name('longTerm');
 Route::get('/insertH', function () {
     return view('insertHabit');
 }) -> name('insertH');

@@ -13,15 +13,18 @@ class TaskController extends Controller
 {
     public function habits(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        return view('task.habits');
+        $habits = Habit::all();
+        return view('task.habits', ['habits' => $habits]);
     }
     public function dailyTasks(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        return view('task.dailyTasks');
+        $dailyTasks = DailyTask::all();
+        return view('task.daily', ['dailyTasks' => $dailyTasks]);
     }
     public function longTermTasks(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        return view('task.longTermTasks');
+        $longTermTasks = LongTermTask::all();
+        return view('task.longTerm', ['longTermTasks' => $longTermTasks]);
     }
 
 }
