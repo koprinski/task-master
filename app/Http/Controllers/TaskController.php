@@ -26,10 +26,22 @@ class TaskController extends Controller
         $longTermTasks = LongTermTask::all();
         return view('task.longTerm', ['longTermTasks' => $longTermTasks]);
     }
-    public function deleteTask($task): \Illuminate\Http\RedirectResponse
+
+    public function deleteHabit($id): \Illuminate\Http\RedirectResponse
     {
-        $task::delete();
+        Habit::findOrFail($id)->delete();
+        return to_route('habits');
+    }
+    public function deleteDaily($id): \Illuminate\Http\RedirectResponse
+    {
+        DailyTask::findOrFail($id)->delete();
+        return to_route('daily');
+    }
+    public function deleteLong($id): \Illuminate\Http\RedirectResponse
+    {
+        LongTermTask::findOrFail($id)->delete();
         return to_route('longTerm');
     }
+
 
 }

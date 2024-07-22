@@ -5,8 +5,11 @@
             <div class="border-base-300 flex text-left text-3xl  order-t px-4 py-16 mb-8 uppercase">{{$habit['name']}}</div>
             <button class="btn size-12 text-4xl bg-red-600  absolute bottom-4 right-20">-</button>
             <button class="btn size-12 text-4xl bg-green-400 absolute bottom-4 right-4 text-black">+</button>
-            <button class="btn text-2xl bg-red-400 absolute bottom-4 left-4 text-black">DELETE</button>
-        </div>
+            <form method="POST" action="{{route('habit.delete',['id'=> $habit['id']])}}">
+                @method('DELETE')
+                @csrf
+                <button class="btn text-xl bg-red-400 absolute bottom-4 left-4 text-black" type="submit">DELETE </button>
+            </form>        </div>
     @endforeach
 
 

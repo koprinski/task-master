@@ -26,6 +26,10 @@ Route::get('/insertL', function () {
     return view('insertLong');
 }) -> name('insertL');
 
+Route::delete('/task.habits/{id}',[TaskController::class,'deleteHabit']) -> name('habit.delete');
+Route::delete('/task.daily/{id}',[TaskController::class,'deleteDaily']) -> name('daily.delete');
+Route::delete('/task.longTerm/{id}',[TaskController::class,'deleteLong']) -> name('longTerm.delete');
+
 
 
 Route::get('/dashboard', function () {

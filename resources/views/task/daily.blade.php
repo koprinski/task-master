@@ -5,8 +5,11 @@
         <div class="relative mockup-window border-base-300 border bg-green-100 mb-10">
             <div class="border-base-300 flex text-left text-3xl  order-t px-4 py-16 mb-8 uppercase">{{$dailyTask['name']}}</div>
             <button class="btn  text-xl bg-green-400  absolute bottom-4 right-4 text-black" >COMPLETE </button>
-            <button class="btn text-2xl bg-red-400 absolute bottom-4 left-4 text-black">DELETE</button>
-        </div>
+            <form method="POST" action="{{route('daily.delete',['id'=> $dailyTask['id']])}}">
+                @method('DELETE')
+                @csrf
+                <button class="btn text-xl bg-red-400 absolute bottom-4 left-4 text-black" type="submit">DELETE </button>
+            </form>        </div>
     @endforeach
 
 </x-app-layout>
