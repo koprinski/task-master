@@ -26,5 +26,10 @@ class TaskController extends Controller
         $longTermTasks = LongTermTask::all();
         return view('task.longTerm', ['longTermTasks' => $longTermTasks]);
     }
+    public function deleteTask($task): \Illuminate\Http\RedirectResponse
+    {
+        $task::delete();
+        return to_route('longTerm');
+    }
 
 }

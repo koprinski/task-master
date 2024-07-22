@@ -26,8 +26,7 @@ Route::get('/insertL', function () {
     return view('insertLong');
 }) -> name('insertL');
 
-Route::get('/test', [TestController::class, 'index']);
-Route::get('/test/{id}', [TestController::class, 'show']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
