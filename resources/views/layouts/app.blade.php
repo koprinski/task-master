@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div class="text-center mt-6 border-b text-3xl">
-                        <a href="{{route('insertUserName')}}"> Username </a>
+                        <a href="{{route('profile.update')}}"> Username </a>
                     </div>
                     <div class="mt-6">
                         <div class="text-3xl text-center mb-4">Status</div>
