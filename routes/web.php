@@ -13,7 +13,7 @@ Route::get('/', function () {
 Route::get('/bs', function () {
     return view('bs');
 });
-Route::get('/habits', TaskController::class, 'habits')-> name('habits');  ;
+Route::get('/habits/{habit}', [TaskController::class, 'habits'])-> name('habits');  ;
 Route::get('/DailyTasks', function () {
     return view('Daily_tasks', ['pageName' => 'DailyTasks']);
 }) -> name('DailyTasks');

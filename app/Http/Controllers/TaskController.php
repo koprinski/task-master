@@ -13,15 +13,15 @@ class TaskController extends Controller
 {
     public function habits(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        return view('tasks.habits');
+        return view('task.habits');
     }
     public function dailyTasks(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        return view('tasks.dailyTasks');
+        return view('task.dailyTasks');
     }
     public function longTermTasks(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        return view('tasks.longTermTasks');
+        return view('task.longTermTasks');
     }
 
 }

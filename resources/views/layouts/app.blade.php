@@ -32,7 +32,7 @@
     <main class="text-black">
         <div class="p-1 bg-green-400">
             <div class="navbar grid grid-cols-1 sm:grid-cols-3 gap-4 text-center" >
-                <a class="btn btn-ghost text-3xl" href="{{route('Habbits')}}">Habits</a>
+                <a class="btn btn-ghost text-3xl" href="{{route('habits')}}">Habits</a>
                 <a class="btn btn-ghost text-3xl" href="{{route('DailyTasks')}}">Daily tasks</a>
                 <a class="btn btn-ghost text-3xl" href="{{route('LongTermTasks')}}">Long-term </a>
             </div>
