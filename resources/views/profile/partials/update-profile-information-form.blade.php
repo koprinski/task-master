@@ -61,4 +61,15 @@
             @endif
         </div>
     </form>
+
+   <div class="mt-8">
+       <h2 class="text-lg font-medium text-gray-900 mb-8">
+           Change profile picture
+       </h2>
+       <form method="POST"  action="{{route('profilePic')}}" enctype="multipart/form-data">
+           @csrf
+           <input name="image" type="file" class="rounded-b mb-8">
+           <x-primary-button> Save </x-primary-button>
+       </form>
+   </div>
 </section>

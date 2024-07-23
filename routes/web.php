@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+
 
 
 Route::get('/', function () {
@@ -33,7 +35,7 @@ Route::delete('/task.habits/{id}',[TaskController::class,'deleteHabit'])->middle
 Route::delete('/task.daily/{id}',[TaskController::class,'deleteDaily'])->middleware(['auth', 'verified']) -> name('daily.delete');
 Route::delete('/task.longTerm/{id}',[TaskController::class,'deleteLong']) ->middleware(['auth', 'verified'])-> name('longTerm.delete');
 
-
+Route::post('/profile',[UserController::class,'upload'])->middleware(['auth', 'verified'])->name('profilePic');
 
 Route::get('/habbit/', [TaskController::class, 'habits'])->middleware(['auth', 'verified'])->name('dashboard');
 

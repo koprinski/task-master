@@ -17,8 +17,9 @@
 </head>
 <body class="font-sans antialiased">
 @php($points = \Illuminate\Support\Facades\Auth::user()->points)
-@php($img = \Illuminate\Support\Facades\Auth::user()->image)
+@php($img = \Illuminate\Support\Facades\Auth::user()->image )
 @php($name = \Illuminate\Support\Facades\Auth::user()->name)
+
 <div class="bg-gradient-to-r from-green-300 to-blue-300 min-h-screen">
     {{--            @include('layouts.navigation')--}}
 
@@ -64,20 +65,21 @@
                     <div class="text-center mt-4">
                         <div class="avatar relative w-24 h-24 mx-auto">
                             <!-- Link wrapper to make the entire avatar clickable -->
-                            <a href="#" class="block w-full h-full relative group" id="avatar-link">
+                            <a href="{{route('profile.update')}}" class="block w-full h-full relative group" id="avatar-link">
                                 <!-- Avatar image -->
                                 <img
-                                    class="w-full h-full object-cover rounded-full transition duration-300 ease-in-out group-hover:filter group-hover:grayscale-[80%]"
-                                    src="{{$img}}"
+                                    class="w-full h-full object-cover rounded-full transition duration-300 ease-in-out group-hover:filter group-hover:grayscale-[100%]"
+                                    src="{{Storage::url('avatars/'.$img)}}"
                                     alt="Avatar"
                                     id="avatar-img"
                                 />
                                 <!-- Upload icon -->
                                 <img
-                                    class="max-h-12 max-w-12 absolute bottom-7 right-6 hidden group-hover:block"
+                                    class="max-h-12 max-w-12 absolute bottom-7 right-6 hidden group-hover:block "
                                     src="https://www.svgrepo.com/show/33565/upload.svg"
                                     alt="Upload Icon"
                                 />
+{{--                                <input type="image" src="https://www.svgrepo.com/show/33565/upload.svg"  class="max-h-12 max-w-12 absolute bottom-7 right-6 hidden group-hover:block" >--}}
                             </a>
                             <!-- Hidden file input -->
                             <input type="file" id="avatar-input" class="hidden" accept="image/*">
@@ -126,28 +128,7 @@
                 // Update points text
                 document.getElementById('points').textContent = points + ' points';
 
-                // Avatar click event
-                const avatarLink = document.getElementById('avatar-link');
-                const avatarInput = document.getElementById('avatar-input');
-                const avatarImg = document.getElementById('avatar-img');
 
-                avatarLink.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    avatarInput.click();
-                });
-
-                avatarInput.addEventListener('change', function () {
-                    const file = avatarInput.files[0];
-                    const reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        avatarImg.src = e.target.result;
-                    }
-
-                    if (file) {
-                        reader.readAsDataURL(file);
-                    }
-                });
             });
         </script>
     </main>
