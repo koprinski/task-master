@@ -16,6 +16,9 @@
 
 </head>
 <body class="font-sans antialiased">
+@php($points = \Illuminate\Support\Facades\Auth::user()->points)
+@php($img = \Illuminate\Support\Facades\Auth::user()->image)
+@php($name = \Illuminate\Support\Facades\Auth::user()->name)
 <div class="bg-gradient-to-r from-green-300 to-blue-300 min-h-screen">
     {{--            @include('layouts.navigation')--}}
 
@@ -65,7 +68,7 @@
                                 <!-- Avatar image -->
                                 <img
                                     class="w-full h-full object-cover rounded-full transition duration-300 ease-in-out group-hover:filter group-hover:grayscale-[80%]"
-                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                                    src="{{$img}}"
                                     alt="Avatar"
                                     id="avatar-img"
                                 />
@@ -81,7 +84,7 @@
                         </div>
                     </div>
                     <div class="text-center mt-6 border-b text-3xl">
-                        <a href="{{route('profile.update')}}"> Username </a>
+                        <a href="{{route('profile.update')}}"> {{$name}} </a>
                     </div>
                     <div class="mt-6">
                         <div class="text-3xl text-center mb-4">Status</div>
@@ -100,10 +103,11 @@
                 </div>
             </div>
         </div>
+
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                // localStorage.setItem("points", 1000);
-                let points = parseInt(localStorage.getItem("points"));// Example points data
+
+                let points = {{$points}};
                 const progressBar = document.getElementById('progress-bar');
                 const statusText = document.getElementById('status-text');
 

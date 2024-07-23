@@ -50,7 +50,6 @@ class TaskController extends Controller
 
         return redirect('habits');
     }
-
     public function newDaily()
     {
         request()->validate(['name' => ['required']]);
