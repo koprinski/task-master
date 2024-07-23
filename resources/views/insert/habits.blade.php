@@ -17,8 +17,14 @@
 <body class="min-h-screen bg-gradient-to-r from-green-500 to-blue-300 text-black flex flex-col items-center justify-center">
 <h1 class="text-center text-4xl md:text-7xl p-4 md:p-24">Create a new Habit</h1>
 <div class="w-full max-w-md mx-auto px-4">
-    <input id="textInput" class="w-full border border-black bg-green-100 text-lg md:text-4xl p-2 mb-4" placeholder="Habit Name" type="text">
-    <input id="createButton" class="w-full btn text-lg md:text-4xl bg-green-400 py-2 border rounded-3xl border-black text-black cursor-pointer" type="submit" value="Add">
+    <form method="POST" action="{{route('insert.habit')}}">
+        @csrf
+        <input name="name" id="textInput" class="w-full border border-black bg-green-100 text-lg md:text-4xl p-2 mb-4" type="text" placeholder="Habit Name" required>
+        @error('name')
+        <p class="text-red-600 bold text-2xl"> {{$message}} </p>
+        @enderror
+        <input id="createButton" class="w-full btn text-lg md:text-4xl bg-green-400 py-2 border rounded-3xl border-black text-black cursor-pointer" type="submit" value="Add">
+    </form>>
 </div>
 
 <script>
@@ -26,29 +32,6 @@
     window.onload = function() {
         document.getElementById('textInput').focus();
     };
-
-    document.getElementById('createButton').addEventListener('click', addHabit);
-    document.getElementById('textInput').addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') {
-            addHabit();
-        }
-    });
-
-    function addHabit() {
-        const habitName = document.getElementById('textInput').value;
-        if (habitName) {
-            // Retrieve habits from localStorage
-            let habits = JSON.parse(localStorage.getItem('habits')) || [];
-            // Add new habit to the array
-            habits.push(habitName);
-            // Save updated habits array to localStorage
-            localStorage.setItem('habits', JSON.stringify(habits));
-            // Redirect back to the Habbits page
-            window.location.href = '{{ route('Habbits') }}';
-        } else {
-            alert('Please enter a habit name.');
-        }
-    }
 </script>
 </body>
 </html>

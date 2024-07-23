@@ -1,4 +1,4 @@
-<x-app-layout class="btn size-24 text-5xl bg-green-400  items-center text-black" href="{{ route('insertH') }}">
+<x-app-layout class="btn size-24 text-5xl bg-green-400  items-center text-black" href="{{ route('iHabits') }}">
     @section('title', 'Habits') @section('header', 'Habits') @section('container','habits-container') @section('content', 'Click the + button to add a new habit.')
     @foreach($habits as $habit)
         <div class="relative mockup-window border-base-300 border bg-green-100 mb-10">
