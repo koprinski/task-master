@@ -113,7 +113,7 @@
                 {
                     const progressBar = document.getElementById('progress-bar');
                     const statusText = document.getElementById('status-text');
-
+                    progressBar.classList.remove('bg-red-600', 'bg-orange-400', 'bg-green-400');
                     if (points >= 700) {
                         // progressBar.classList.remove('bg-orange-400 bg-red-600');
                         progressBar.classList.add('bg-green-400');
