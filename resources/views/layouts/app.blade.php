@@ -13,7 +13,7 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+{{--    @yield('scripts')--}}
 </head>
 <body class="font-sans antialiased">
 @php($points = \Illuminate\Support\Facades\Auth::user()->points)
@@ -108,29 +108,132 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {
+                //progress bar
+                function pBar(points)
+                {
+                    const progressBar = document.getElementById('progress-bar');
+                    const statusText = document.getElementById('status-text');
 
-                let points = {{$points}};
-                const progressBar = document.getElementById('progress-bar');
-                const statusText = document.getElementById('status-text');
-
-                // Update progress bar color based on points
-                if (points >= 700) {
-                    progressBar.classList.add('bg-green-400');
-                    statusText.textContent = 'You are doing great!';
-                } else if (points >= 300) {
-                    progressBar.classList.add('bg-orange-400');
-                    statusText.textContent = 'You are doing OK!';
-                } else {
-                    progressBar.classList.add('bg-red-600');
-                    statusText.textContent = 'You are doing horrible!';
+                    if (points >= 700) {
+                        // progressBar.classList.remove('bg-orange-400 bg-red-600');
+                        progressBar.classList.add('bg-green-400');
+                        statusText.textContent = 'You are doing great!';
+                    } else if (points >= 300) {
+                        progressBar.classList.add('bg-orange-400');
+                        statusText.textContent = 'You are doing OK!';
+                    } else {
+                        progressBar.classList.add('bg-red-600');
+                        statusText.textContent = 'You are doing horrible!';
+                    }
+                    document.getElementById('points').textContent = points + ' points';
                 }
+                pBar({{$points}});
+                //delete button
+                const habits = document.querySelectorAll('.task');
+                habits.forEach(habit => {
+                    const dForm = habit.querySelector(".delete-form");
+                    const addForm = habit.querySelector(".addPoints-form");
+                    const removeForm = habit.querySelector(".removePoints-form");
 
-                // Update points text
-                document.getElementById('points').textContent = points + ' points';
+                    dForm.addEventListener('submit', function (e) {
+                        e.preventDefault();
 
+                        const action = this.action;
 
+                        fetch(action, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                            },
+                        })
+                            .then(response => {
+                                if (response.ok) {
+                                    return response.json();
+                                } else {
+                                    throw new Error('Failed to delete the habit');
+                                }
+                            })
+                            .then(data => {
+                                if (data.success) {
+                                    habit.classList.add('hidden');
+                                } else {
+                                    console.error('Failed to delete the habit');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    });
+                    //add points button
+                    addForm.addEventListener('submit', function (e) {
+                        e.preventDefault();
+
+                        const action = this.action;
+
+                        fetch(action, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                            },
+                        })
+                            .then(response => {
+                                if (response.ok) {
+                                    return response.json();
+                                } else {
+                                    throw new Error('Failed to add points');
+                                }
+                            })
+                            .then(data => {
+                                if (data.success) {
+                                    pBar(data.points);
+                                } else {
+                                    console.error('Failed to add points');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    });
+                    //remove points button
+                    removeForm.addEventListener('submit', function (e) {
+                        e.preventDefault();
+
+                        const action = this.action;
+
+                        fetch(action, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                            },
+                        })
+                            .then(response => {
+                                if (response.ok) {
+                                    return response.json();
+                                } else {
+                                    throw new Error('Failed to delete points1');
+                                }
+                            })
+                            .then(data => {
+                                if (data.success) {
+                                    pBar(data.points);
+                                } else {
+                                    console.error('Failed to delete points2');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    });
+                });
             });
         </script>
+
     </main>
 </div>
 </body>

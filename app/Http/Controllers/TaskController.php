@@ -68,21 +68,37 @@ class TaskController extends Controller
     }
 
     //Delete row functions
-    public function deleteHabit($id): \Illuminate\Http\RedirectResponse
+    public function deleteHabit($id): \Illuminate\Http\JsonResponse
     {
         Habit::findOrFail($id)->delete();
-        return to_route('habits');
+        return response()->json(['success' => true, 'message' => 'Task deleted successfully']);
     }
-    public function deleteDaily($id): \Illuminate\Http\RedirectResponse
+    public function deleteDaily($id): \Illuminate\Http\JsonResponse
     {
         DailyTask::findOrFail($id)->delete();
-        return to_route('daily');
+        return response()->json(['success' => true, 'message' => 'Task deleted successfully']);
     }
-    public function deleteLong($id): \Illuminate\Http\RedirectResponse
+    public function deleteLong($id):\Illuminate\Http\JsonResponse
     {
         LongTermTask::findOrFail($id)->delete();
-        return to_route('longTerm');
+        return response()->json(['success' => true, 'message' => 'Task deleted successfully']);
     }
 
+    //Points functions
+    public function PointsHabit($check): \Illuminate\Http\JsonResponse
+    {
+        $user = Auth::user();
+        if ($check == '+')
+        {
+            $user->points += 50;
+        }
+        if ($check == '-')
+        {
+            $user->points -= 100;
+        }
+
+        $user->save();
+        return response()->json(['success' => true, 'message' => 'Points changed successfully', 'points' => $user->points]);
+    }
 
 }

@@ -24,7 +24,7 @@
         <p class="text-red-600 bold text-2xl"> {{$message}} </p>
         @enderror
         <input id="createButton" class="w-full btn text-lg md:text-4xl bg-green-400 py-2 border rounded-3xl border-black text-black cursor-pointer" type="submit" value="Add">
-    </form>>
+    </form>
 </div>
 
 <script>

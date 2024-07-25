@@ -35,8 +35,11 @@ Route::delete('/task.habits/{id}',[TaskController::class,'deleteHabit'])->middle
 Route::delete('/task.daily/{id}',[TaskController::class,'deleteDaily'])->middleware(['auth', 'verified']) -> name('daily.delete');
 Route::delete('/task.longTerm/{id}',[TaskController::class,'deleteLong']) ->middleware(['auth', 'verified'])-> name('longTerm.delete');
 
+//points routes
+Route::post('/task.habits/{check}',[TaskController::class,'PointsHabit'])->middleware(['auth', 'verified']) -> name('habit.Points');
+
 //profile updates
-Route::post('/profile',[UserController::class,'upload'])->middleware(['auth', 'verified'])->name('profilePic');
+Route::patch('/profile',[UserController::class,'upload'])->middleware(['auth', 'verified'])->name('profilePic');
 
 Route::get('/habbit/', [TaskController::class, 'habits'])->middleware(['auth', 'verified'])->name('dashboard');
 
