@@ -96,9 +96,19 @@ class TaskController extends Controller
         {
             $user->points -= 100;
         }
-
         $user->save();
         return response()->json(['success' => true, 'message' => 'Points changed successfully', 'points' => $user->points]);
+    }
+
+    public function completeD($id): \Illuminate\Http\JsonResponse
+    {
+
+        $user = Auth::user();
+        $user->points += 100;
+        DailyTask::findOrFail($id)->update(['completed' => true]);
+        $user->save();
+        DailyTask::findOrFail($id)->save();
+        return response()->json(['success' => true, 'message' => 'Task completed successfully', 'points' => $user->points]);
     }
 
 }

@@ -134,6 +134,7 @@
                     const dForm = habit.querySelector(".delete-form");
                     const addForm = habit.querySelector(".addPoints-form");
                     const removeForm = habit.querySelector(".removePoints-form");
+                    const completeD = habit.querySelector(".completeD-form");
 
                     dForm.addEventListener('submit', function (e) {
                         e.preventDefault();
@@ -167,69 +168,117 @@
                             });
                     });
                     //add points button
-                    addForm.addEventListener('submit', function (e) {
-                        e.preventDefault();
+                   if(addForm)
+                   {
+                       addForm.addEventListener('submit', function (e) {
+                           e.preventDefault();
 
-                        const action = this.action;
+                           const action = this.action;
 
-                        fetch(action, {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json',
-                            },
-                        })
-                            .then(response => {
-                                if (response.ok) {
-                                    return response.json();
-                                } else {
-                                    throw new Error('Failed to add points');
-                                }
-                            })
-                            .then(data => {
-                                if (data.success) {
-                                    pBar(data.points);
-                                } else {
-                                    console.error('Failed to add points');
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                            });
-                    });
+                           fetch(action, {
+                               method: 'POST',
+                               headers: {
+                                   'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                   'Content-Type': 'application/json',
+                                   'Accept': 'application/json',
+                               },
+                           })
+                               .then(response => {
+                                   if (response.ok) {
+                                       return response.json();
+                                   } else {
+                                       throw new Error('Failed to add points');
+                                   }
+                               })
+                               .then(data => {
+                                   if (data.success) {
+                                       pBar(data.points);
+                                   } else {
+                                       console.error('Failed to add points');
+                                   }
+                               })
+                               .catch(error => {
+                                   console.error('Error:', error);
+                               });
+                       });
+                   }
                     //remove points button
-                    removeForm.addEventListener('submit', function (e) {
-                        e.preventDefault();
+                    if(removeForm)
+                    {
+                        removeForm.addEventListener('submit', function (e) {
+                            e.preventDefault();
 
-                        const action = this.action;
+                            const action = this.action;
 
-                        fetch(action, {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json',
-                            },
-                        })
-                            .then(response => {
-                                if (response.ok) {
-                                    return response.json();
-                                } else {
-                                    throw new Error('Failed to delete points1');
-                                }
+                            fetch(action, {
+                                method: 'POST',
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json',
+                                },
                             })
-                            .then(data => {
-                                if (data.success) {
-                                    pBar(data.points);
-                                } else {
-                                    console.error('Failed to delete points2');
-                                }
+                                .then(response => {
+                                    if (response.ok) {
+                                        return response.json();
+                                    } else {
+                                        throw new Error('Failed to delete points1');
+                                    }
+                                })
+                                .then(data => {
+                                    if (data.success) {
+                                        pBar(data.points);
+                                    } else {
+                                        console.error('Failed to delete points2');
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                });
+                        });
+                    }
+
+                    //complete daily
+                    if(completeD)
+                    {
+                        completeD.addEventListener('submit', function (e) {
+                            e.preventDefault();
+
+                            const action = this.action;
+
+                            fetch(action, {
+                                method: 'POST',
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json',
+                                },
                             })
-                            .catch(error => {
-                                console.error('Error:', error);
-                            });
-                    });
+                                .then(response => {
+                                    if (response.ok) {
+                                        return response.json();
+                                    } else {
+                                        throw new Error('Failed to complete the task');
+                                    }
+                                })
+                                .then(data => {
+                                    if (data.success) {
+                                        pBar(data.points);
+                                        const button = completeD.querySelector("#complete-button");
+                                        const paragraph = document.createElement('p');
+                                        paragraph.textContent = 'COMPLETED';
+                                        paragraph.classList.add('text-xl', 'absolute', 'bottom-4', 'right-4', 'text-black');
+                                        button.parentNode.insertBefore(paragraph, button);
+                                        button.remove();
+                                    } else {
+                                        console.error('Failed to complete the task');
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                });
+                        });
+                    }
                 });
             });
         </script>
