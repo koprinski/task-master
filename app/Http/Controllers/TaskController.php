@@ -111,4 +111,14 @@ class TaskController extends Controller
         return response()->json(['success' => true, 'message' => 'Task completed successfully', 'points' => $user->points]);
     }
 
+    public function completeL($id): \Illuminate\Http\JsonResponse
+    {
+
+        $user = Auth::user();
+        $user->points += 300;
+        $user->save();
+        LongTermTask::findOrFail($id)->delete();
+        return response()->json(['success' => true, 'message' => 'Task completed successfully', 'points' => $user->points]);
+    }
+
 }

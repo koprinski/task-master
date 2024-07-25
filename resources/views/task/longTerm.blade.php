@@ -4,7 +4,11 @@
         <div class="relative mockup-window border-base-300 border bg-green-100 mb-10 task">
             <div class=" absolute top-2 text-2xl left-20 ml-7 ">{{$longTermTask['date']}}</div>
             <div class="border-base-300 flex text-left text-3xl  order-t px-4 py-16 mb-8 uppercase">{{$longTermTask['name']}}</div>
-            <button class="btn  text-xl bg-green-400  absolute bottom-4 right-4 text-black" >COMPLETE </button>
+            <form method="POST" action="{{route('longTerm.complete',['id'=> $longTermTask['id']])}}" class="completeL-form">
+                @csrf
+                @method('POST')
+                <button id="complete-button" type="submit" class="btn  text-xl bg-green-400  absolute bottom-4 right-4 text-black" >COMPLETE </button>
+            </form>
             <form method="POST" action="{{route('longTerm.delete',['id'=> $longTermTask['id']])}}" class="delete-form">
                 @method('DELETE')
                 @csrf
