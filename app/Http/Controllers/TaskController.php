@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Habit;
@@ -27,6 +28,30 @@ class TaskController extends Controller
     {
         $longTermTasks = Auth::user()->longTermTasks;
         return view('task.longTerm', ['longTermTasks' => $longTermTasks]);
+    }
+
+    public function closeModal(): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
+    {
+        $user = Auth::user();
+        $dailyTasks = DailyTask::all();
+        $user->checkedModal = true;
+        $user->save();
+        foreach ($dailyTasks as $dailyTask)
+        {
+            if ($dailyTask['completed'])
+            {
+                $dailyTask->update(['completed' => false]);
+                $dailyTask->save();
+            }
+            else
+            {
+                $user_id = $dailyTask['user_id'];
+                $user = User::findOrFail($user_id);
+                $user->points -= 150;
+                $user->save();
+            }
+        }
+        return redirect('daily');
     }
     // Insert views
     public function iHabits(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
@@ -61,7 +86,7 @@ class TaskController extends Controller
     }
     public function newLongTerm()
     {
-//        request()->validate(['name' => ['required'], 'date' => ['required', 'after:today']]);
+        request()->validate(['name' => ['required'], 'date' => ['required', 'after:today']]);
 
         LongTermTask::create(['name' => request('name'), 'date' => request('date'), 'user_id' => auth()->id()]);
 
@@ -72,6 +97,7 @@ class TaskController extends Controller
     public function deleteHabit($id): \Illuminate\Http\JsonResponse
     {
         $user = Auth::user();
+        Habit::findOrFail($id)->delete();
         return response()->json(['success' => true, 'message' => 'Task deleted successfully','points' => $user->points]);
     }
     public function deleteDaily($id): \Illuminate\Http\JsonResponse

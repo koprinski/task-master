@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateDailyTasks implements ShouldQueue
 {
@@ -27,22 +28,13 @@ class UpdateDailyTasks implements ShouldQueue
      */
     public function handle(): void
     {
-        $dailyTasks = DailyTask::all();
-        foreach ($dailyTasks as $dailyTask)
+        $users = User::all();
+        foreach ($users as $user)
         {
-            if ($dailyTask['completed'])
-            {
-                $dailyTask->update(['completed' => false]);
-                $dailyTask->save();
-            }
-            else
-            {
-               $user_id = $dailyTask['user_id'];
-               $user = User::findOrFail($user_id);
-               $user->points -= 150;
-               $user->save();
-            }
+            $user->checkedModal = false;
+            $user->save();
         }
+
     }
 
 }

@@ -23,6 +23,7 @@ Route::get('/longTerm', [TaskController::class, 'longTermTasks'])->middleware(['
 Route::get('/iHabits/', [TaskController::class, 'iHabits'])->middleware(['auth', 'verified'])-> name('iHabits');
 Route::get('/iDaily/', [TaskController::class, 'iDaily'])->middleware(['auth', 'verified'])-> name('iDaily');
 Route::get('/iLongTerm/', [TaskController::class, 'iLongTerm'])->middleware(['auth', 'verified'])-> name('iLongTerm');
+Route::post('/closeModal/', [TaskController::class, 'closeModal'])->middleware(['auth', 'verified'])-> name('closeModal');
 
 //insert routes
 Route::post('/iLongTerm', [TaskController::class, 'newLongTerm'])->middleware(['auth', 'verified'])->name('insert.longTerm');

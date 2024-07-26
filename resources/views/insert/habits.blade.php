@@ -15,6 +15,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen bg-gradient-to-r from-green-500 to-blue-300 text-black flex flex-col items-center justify-center">
+
 <h1 class="text-center text-4xl md:text-7xl p-4 md:p-24">Create a new Habit</h1>
 <div class="w-full max-w-md mx-auto px-4">
     <form method="POST" action="{{route('insert.habit')}}">
@@ -26,6 +27,7 @@
         <input id="createButton" class="w-full btn text-lg md:text-4xl bg-green-400 py-2 border rounded-3xl border-black text-black cursor-pointer" type="submit" value="Add">
     </form>
 </div>
+
 
 <script>
     // Focus on the input field when the page loads
