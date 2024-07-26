@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Habit;
 use App\Models\DailyTask;
@@ -60,7 +61,7 @@ class TaskController extends Controller
     }
     public function newLongTerm()
     {
-        request()->validate(['name' => ['required'], 'date' => ['required', 'after:today']]);
+//        request()->validate(['name' => ['required'], 'date' => ['required', 'after:today']]);
 
         LongTermTask::create(['name' => request('name'), 'date' => request('date'), 'user_id' => auth()->id()]);
 
@@ -70,18 +71,26 @@ class TaskController extends Controller
     //Delete row functions
     public function deleteHabit($id): \Illuminate\Http\JsonResponse
     {
-        Habit::findOrFail($id)->delete();
-        return response()->json(['success' => true, 'message' => 'Task deleted successfully']);
+        $user = Auth::user();
+        return response()->json(['success' => true, 'message' => 'Task deleted successfully','points' => $user->points]);
     }
     public function deleteDaily($id): \Illuminate\Http\JsonResponse
     {
+        $user = Auth::user();
         DailyTask::findOrFail($id)->delete();
-        return response()->json(['success' => true, 'message' => 'Task deleted successfully']);
+        return response()->json(['success' => true, 'message' => 'Task deleted successfully','points' => $user->points]);
     }
     public function deleteLong($id):\Illuminate\Http\JsonResponse
     {
-        LongTermTask::findOrFail($id)->delete();
-        return response()->json(['success' => true, 'message' => 'Task deleted successfully']);
+        $longTask = LongTermTask::findOrFail($id);
+        $user = Auth::user();
+        if (strtotime($longTask['date']) < time())
+        {
+            $user->points -= 400;
+        }
+        $user->save();
+        $longTask->delete();
+        return response()->json(['success' => true, 'message' => 'Task completed successfully', 'points' => $user->points]);
     }
 
     //Points functions
@@ -113,11 +122,18 @@ class TaskController extends Controller
 
     public function completeL($id): \Illuminate\Http\JsonResponse
     {
-
+        $longTask = LongTermTask::findOrFail($id);
         $user = Auth::user();
-        $user->points += 300;
+        if (strtotime($longTask['date']) > time())
+        {
+            $user->points += 300;
+        }
+        else
+        {
+            $user->points += 50;
+        }
         $user->save();
-        LongTermTask::findOrFail($id)->delete();
+        $longTask->delete();
         return response()->json(['success' => true, 'message' => 'Task completed successfully', 'points' => $user->points]);
     }
 

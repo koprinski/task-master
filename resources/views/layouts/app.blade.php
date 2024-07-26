@@ -159,6 +159,7 @@
                             })
                             .then(data => {
                                 if (data.success) {
+                                    pBar(data.points);
                                     habit.classList.add('hidden');
                                 } else {
                                     console.error('Failed to delete the habit');
