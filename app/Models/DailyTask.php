@@ -9,4 +9,9 @@ class DailyTask extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'user_id','completed'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
