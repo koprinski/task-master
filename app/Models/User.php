@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -20,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'image'
     ];
 
     /**
@@ -44,4 +46,18 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function habits()
+    {
+        return $this->hasMany(Habit::class);
+    }
+    public function dailyTasks()
+    {
+        return $this->hasMany(DailyTask::class);
+    }
+    public function longTermTasks()
+    {
+        return $this->hasMany(LongTermTask::class);
+    }
+
 }
