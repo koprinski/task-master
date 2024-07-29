@@ -3,6 +3,7 @@
     @section('title', 'Daily Tasks') @section('header', 'Daily tasks') @section('container','task-container')@section('content', 'Click the + button to add a new task.')
 {{--    @php(dd(\Illuminate\Support\Facades\Auth::user()->checkedModal))--}}
     @if(\Illuminate\Support\Facades\Auth::user()->checkedModal == false)  @include('dailyModal')  @endif
+{{--    @include('dailyModal')--}}
     @foreach($dailyTasks as $dailyTask)
         <div class="relative mockup-window border-base-300 border bg-green-100 mb-10 task">
             <div class="border-base-300 flex text-left text-3xl  order-t px-4 py-16 mb-8 uppercase">{{$dailyTask['name']}}</div>

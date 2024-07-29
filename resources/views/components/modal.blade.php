@@ -1,17 +1,17 @@
 @props([
-    'name' => 'name',
+    'name',
     'show' => false,
     'maxWidth' => '2xl'
 ])
 
 @php
-$maxWidth = [
-    'sm' => 'sm:max-w-sm',
-    'md' => 'sm:max-w-md',
-    'lg' => 'sm:max-w-lg',
-    'xl' => 'sm:max-w-xl',
-    '2xl' => 'sm:max-w-2xl',
-][$maxWidth];
+    $maxWidth = [
+        'sm' => 'sm:max-w-sm',
+        'md' => 'sm:max-w-md',
+        'lg' => 'sm:max-w-lg',
+        'xl' => 'sm:max-w-xl',
+        '2xl' => 'sm:max-w-2xl',
+    ][$maxWidth];
 @endphp
 
 <div
@@ -39,7 +39,7 @@ $maxWidth = [
             document.body.classList.remove('overflow-y-hidden');
         }
     })"
-    x-on:open-modal.window="$event.detail == '{{ $name }}'0 ? show = true : null"
+    x-on:open-modal.window="$event.detail == '{{ $name }}' ? show = true : null"
     x-on:close-modal.window="$event.detail == '{{ $name }}' ? show = false : null"
     x-on:close.stop="show = false"
     x-on:keydown.escape.window="show = false"
