@@ -48,8 +48,6 @@
                 <!-- Wide Column -->
                 <div class="relative col-span-1 lg:col-span-4 bg-white p-4 shadow-lg max-h-[700px] overflow-scroll">
                     <h2 class="text-4xl font-bold mb-4">@yield('header')</h2>
-
-                    {{-- The block needs to appear here --}}
                     <div id="@yield('container')">
                         <div class="flex items-center justify-center p-0 m-0">
                             <div role="status" class="loader p-0 m-0">
