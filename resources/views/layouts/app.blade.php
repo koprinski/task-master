@@ -105,7 +105,7 @@
                             <div class="w-full bg-gray-200 rounded-full h-6">
                                 <div id="progress-bar" class="h-6 rounded-full"></div>
                             </div>
-                            <div class="text-center text-xl mt-2" id="points">0 points</div>
+                            <div class="text-center text-xl mt-2" id="points">{{\Illuminate\Support\Facades\Auth::user()->points}} points</div>
                         </div>
                     </div>
                     <div id="status-text" class="text-4xl text-center mt-6">
@@ -133,24 +133,50 @@
                 }, 300);
             });
 
+            //number animation
+            function animateValue(obj, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    obj.innerHTML = Math.floor(progress * (end - start) + start);
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
             //progress bar
                 function pBar(points)
                 {
                     const progressBar = document.getElementById('progress-bar');
                     const statusText = document.getElementById('status-text');
-                    progressBar.classList.remove('bg-red-600', 'bg-orange-400', 'bg-green-400');
-                    if (points >= 700) {
-                        // progressBar.classList.remove('bg-orange-400 bg-red-600');
-                        progressBar.classList.add('bg-green-400');
-                        statusText.textContent = 'You are doing great!';
-                    } else if (points >= 300) {
-                        progressBar.classList.add('bg-orange-400');
-                        statusText.textContent = 'You are doing OK!';
-                    } else {
-                        progressBar.classList.add('bg-red-600');
-                        statusText.textContent = 'You are doing horrible!';
-                    }
-                    document.getElementById('points').textContent = points + ' points';
+
+                    progressBar.className = 'h-6 rounded-full bg-gradient-to-r';
+
+                    const progressBarClasses = [
+                        { max: 0, classes: ['from-red-900', 'to-red-800'], text: 'You are doing horrible!' },
+                        { max: 100, classes: ['from-red-800', 'to-red-700'], text: 'You are doing horrible!' },
+                        { max: 200, classes: ['from-red-700', 'to-red-600'], text: 'You are doing horrible!' },
+                        { max: 300, classes: ['from-red-600', 'to-red-500'], text: 'You are doing horrible!' },
+                        { max: 400, classes: ['from-red-600', 'to-orange-600'], text: 'You are doing horrible!' },
+                        { max: 500, classes: ['from-orange-600', 'to-orange-500'], text: 'You are doing OK!' },
+                        { max: 600, classes: ['from-orange-500', 'to-orange-400'], text: 'You are doing OK!' },
+                        { max: 700, classes: ['from-orange-400', 'to-yellow-300'], text: 'You are doing OK!' },
+                        { max: 800, classes: ['from-yellow-300', 'to-yellow-200'], text: 'You are doing good!' },
+                        { max: 900, classes: ['from-yellow-200', 'to-lime-200'], text: 'You are doing good!' },
+                        { max: 1000, classes: ['from-lime-200', 'to-lime-300'], text: 'You are doing good!' },
+                        { max: 1100, classes: ['from-lime-300', 'to-green-300'], text: 'You are doing excellent!' },
+                        { max: 1200, classes: ['from-green-300', 'to-green-400'], text: 'You are doing excellent!' },
+                        { max: Infinity, classes: [], text: 'You are outstanding!' },
+                    ];
+                    let defaultClass = { classes: [], text: '' };
+                    const progressBarClass = progressBarClasses.find(range => points <= range.max) || defaultClass;
+                    progressBar.classList.add(...progressBarClass.classes);
+                    statusText.textContent = progressBarClass.text;
+                    const  old_points =  Number(document.getElementById('points').innerText.split(' ')[0]);
+                    const points_div = document.getElementById('points');
+                    animateValue(points_div,  old_points, points, 1000);
                 }
                 pBar({{$points}});
                 //delete button
