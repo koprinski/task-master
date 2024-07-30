@@ -166,11 +166,11 @@
                         e.preventDefault();
 
                         const action = this.action;
-                        const csrfToken =document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                        // const csrfToken =document.querySelector('meta[name="csrf-token"]').getAttribute('content');
                         fetch(action, {
                             method: 'DELETE',
                             headers: {
-                                'X-CSRF-TOKEN':csrfToken,
+                                'X-CSRF-TOKEN':'{{ csrf_token() }}',
                                 'Content-Type': 'application/json',
                                 'Accept': 'application/json',
                             },
