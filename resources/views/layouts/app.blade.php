@@ -320,7 +320,7 @@
                                         pBar(data.points);
                                         const button = completeD.querySelector("#complete-button");
                                         const paragraph = document.createElement('p');
-                                        paragraph.textContent = 'COMPLETED';
+                                        if(data.count > 1) {paragraph.textContent = 'COMPLETED: '.concat(String(data.count));} else {paragraph.textContent = 'COMPLETED';}
                                         paragraph.classList.add('text-xl', 'absolute', 'bottom-4', 'right-4', 'text-black');
                                         button.parentNode.insertBefore(paragraph, button);
                                         button.remove();

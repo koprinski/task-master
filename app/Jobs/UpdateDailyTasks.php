@@ -31,8 +31,31 @@ class UpdateDailyTasks implements ShouldQueue
         $users = User::all();
         foreach ($users as $user)
         {
-            $user->checkedModal = false;
-            $user->save();
+            $dailytasks = $user->dailytasks;
+            $uncompleted = 0;
+            foreach ($dailytasks as $dailytask)
+            {
+               if (!$dailytask['completed'])
+               {
+                   $uncompleted++;
+               }
+            }
+            if ($user->checkedModal && $uncompleted > 0)
+            {
+                $user->checkedModal = false;
+                $user->save();
+            }
+            else
+            {
+                foreach ($dailytasks as $dailytask)
+                {
+                    $dailytask->update(['completed' => false]);
+                    $dailytask->count = 0;
+                    $dailytask->save();
+                }
+                $user->points = $user->points - 150*$uncompleted;
+                $user->save();
+            }
         }
 
     }

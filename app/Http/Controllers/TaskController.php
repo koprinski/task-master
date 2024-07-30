@@ -45,6 +45,8 @@ class TaskController extends Controller
             }
             else
             {
+                $dailyTask->count = 0;
+                $dailyTask->save();
                 $user_id = $dailyTask['user_id'];
                 $user = User::findOrFail($user_id);
                 $user->points -= 150;
@@ -140,10 +142,13 @@ class TaskController extends Controller
 
         $user = Auth::user();
         $user->points += 100;
-        DailyTask::findOrFail($id)->update(['completed' => true]);
+//        DailyTask::findOrFail($id)->update(['completed' => true]);
+        $dailyTask = DailyTask::findOrFail($id);
+        $dailyTask->update(['completed' => true]);
+        $dailyTask->increment('count');
         $user->save();
-        DailyTask::findOrFail($id)->save();
-        return response()->json(['success' => true, 'message' => 'Task completed successfully', 'points' => $user->points]);
+//        DailyTask::findOrFail($id)->save();
+        return response()->json(['success' => true, 'message' => 'Task completed successfully', 'points' => $user->points, 'count' => $dailyTask['count']]);
     }
 
     public function completeL($id): \Illuminate\Http\JsonResponse

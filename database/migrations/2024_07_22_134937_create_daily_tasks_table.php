@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('name');
             $table->boolean('completed')->default(false);
+            $table->integer('count')->default(0);
             $table->timestamps();
         });
     }
