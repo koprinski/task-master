@@ -9,7 +9,7 @@
         <div class="max-h-[700px] overflow-scroll bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
             <div class="px-4 py-5 sm:p-6">
                 <h3 class="text-lg leading-6 font-medium text-gray-900">
-                    Tasks you forgot to check yesterday.
+                    Tasks you may have forgotten to check yesterday.
                 </h3>
                 <div class="mt-2">
                     <p class="text-sm text-gray-500">

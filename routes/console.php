@@ -1,6 +1,7 @@
 <?php
 
 use App\Jobs\UpdateDailyTasks;
+use App\Jobs\Remind;
 //use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
@@ -12,4 +13,5 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote')->hourly();
 
 Schedule::job(app(UpdateDailyTasks::class))->daily()->timezone('Europe/Sofia');
-Schedule::job(app(\App\Jobs\Troll::class))->everyTenSeconds();
+Schedule::job(app(Remind::class))->everyThirtySeconds();
+//Schedule::job(app(\App\Jobs\Troll::class))->everyTenSeconds();
