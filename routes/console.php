@@ -13,5 +13,5 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote')->hourly();
 
 Schedule::job(app(UpdateDailyTasks::class))->daily()->timezone('Europe/Sofia');
-Schedule::job(app(Remind::class))->everyThirtySeconds();
+Schedule::job(app(Remind::class))->dailyAt('13:00');
 //Schedule::job(app(\App\Jobs\Troll::class))->everyTenSeconds();
