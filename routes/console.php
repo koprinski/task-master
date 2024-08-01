@@ -12,6 +12,6 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
 
-Schedule::job(app(UpdateDailyTasks::class))->daily()->timezone('Europe/Sofia');
-Schedule::job(app(Remind::class))->dailyAt('13:00');
+Schedule::job(app(UpdateDailyTasks::class))->hourly();
+Schedule::job(app(Remind::class))->hourly();
 //Schedule::job(app(\App\Jobs\Troll::class))->everyTenSeconds();
