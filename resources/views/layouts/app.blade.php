@@ -22,6 +22,7 @@
 @php($points = \Illuminate\Support\Facades\Auth::user()->points)
 @php($img = \Illuminate\Support\Facades\Auth::user()->image )
 @php($name = \Illuminate\Support\Facades\Auth::user()->name)
+
 <div class="bg-gradient-to-r from-green-300 to-blue-300 min-h-screen">
     {{--            @include('layouts.navigation')--}}
 
