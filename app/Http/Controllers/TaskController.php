@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\UserPointsService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Habit;
@@ -124,48 +125,25 @@ class TaskController extends Controller
     //Points functions
     public function PointsHabit($check): \Illuminate\Http\JsonResponse
     {
-        $user = Auth::user();
-        if ($check == '+')
-        {
-            $user->points += 50;
-        }
-        if ($check == '-')
-        {
-            $user->points -= 100;
-        }
-        $user->save();
-        return response()->json(['success' => true, 'message' => 'Points changed successfully', 'points' => $user->points]);
+        return response()->json(['success' => true,
+            'message' => 'Points changed successfully',
+            'points' => app(UserPointsService::class)->changePointsH($check)]);
     }
 
     public function completeD($id): \Illuminate\Http\JsonResponse
     {
-
-        $user = Auth::user();
-        $user->points += 100;
-//        DailyTask::findOrFail($id)->update(['completed' => true]);
-        $dailyTask = DailyTask::findOrFail($id);
-        $dailyTask->update(['completed' => true]);
-        $dailyTask->increment('count');
-        $user->save();
-//        DailyTask::findOrFail($id)->save();
-        return response()->json(['success' => true, 'message' => 'Task completed successfully', 'points' => $user->points, 'count' => $dailyTask['count']]);
+        $userStats = app(UserPointsService::class)->changePointsD($id);
+        return response()->json(['success' => true,
+            'message' => 'Task completed successfully',
+            'points' => $userStats['points'],
+            'count' => $userStats['count']]);
     }
 
     public function completeL($id): \Illuminate\Http\JsonResponse
     {
-        $longTask = LongTermTask::findOrFail($id);
-        $user = Auth::user();
-        if (strtotime($longTask['date']) > time())
-        {
-            $user->points += 300;
-        }
-        else
-        {
-            $user->points += 50;
-        }
-        $user->save();
-        $longTask->delete();
-        return response()->json(['success' => true, 'message' => 'Task completed successfully', 'points' => $user->points]);
+        return response()->json(['success' => true,
+            'message' => 'Task completed successfully',
+            'points' => app(UserPointsService::class)->changePointsL($id)]);
     }
 
 }
