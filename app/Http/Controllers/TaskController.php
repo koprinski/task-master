@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Services\UserPointsService;
+use App\Services\UserService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Habit;
@@ -17,43 +17,20 @@ class TaskController extends Controller
     //Task views
     public function habits(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        $habits = Auth::user()->habits;
-        return view('task.habits', ['habits' => $habits]);
+        return view('task.habits', ['habits' => Auth::user()->habits]);
     }
     public function dailyTasks(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        $dailyTasks = Auth::user()->dailyTasks;
-        return view('task.daily', ['dailyTasks' => $dailyTasks]);
+        return view('task.daily', ['dailyTasks' => Auth::user()->dailyTasks]);
     }
     public function longTermTasks(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        $longTermTasks = Auth::user()->longTermTasks;
-        return view('task.longTerm', ['longTermTasks' => $longTermTasks]);
+        return view('task.longTerm', ['longTermTasks' => Auth::user()->longTermTasks]);
     }
 
     public function closeModal(): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
     {
-        $user = Auth::user();
-        $dailyTasks = DailyTask::all();
-        $user->checkedModal = true;
-        $user->save();
-        foreach ($dailyTasks as $dailyTask)
-        {
-            if ($dailyTask['completed'])
-            {
-                $dailyTask->update(['completed' => false]);
-                $dailyTask->save();
-            }
-            else
-            {
-                $dailyTask->count = 0;
-                $dailyTask->save();
-                $user_id = $dailyTask['user_id'];
-                $user = User::findOrFail($user_id);
-                $user->points -= 150;
-                $user->save();
-            }
-        }
+        app(UserService::class)->closeModal();
         return redirect('daily');
     }
     // Insert views
@@ -111,15 +88,9 @@ class TaskController extends Controller
     }
     public function deleteLong($id):\Illuminate\Http\JsonResponse
     {
-        $longTask = LongTermTask::findOrFail($id);
-        $user = Auth::user();
-        if (strtotime($longTask['date']) < time())
-        {
-            $user->points -= 400;
-        }
-        $user->save();
-        $longTask->delete();
-        return response()->json(['success' => true, 'message' => 'Task completed successfully', 'points' => $user->points]);
+        return response()->json(['success' => true,
+            'message' => 'Task completed successfully',
+            'points' => app(UserService::class)->deleteLongTask($id)]);
     }
 
     //Points functions
@@ -127,12 +98,12 @@ class TaskController extends Controller
     {
         return response()->json(['success' => true,
             'message' => 'Points changed successfully',
-            'points' => app(UserPointsService::class)->changePointsH($check)]);
+            'points' => app(UserService::class)->changePointsH($check)]);
     }
 
     public function completeD($id): \Illuminate\Http\JsonResponse
     {
-        $userStats = app(UserPointsService::class)->changePointsD($id);
+        $userStats = app(UserService::class)->changePointsD($id);
         return response()->json(['success' => true,
             'message' => 'Task completed successfully',
             'points' => $userStats['points'],
@@ -143,7 +114,7 @@ class TaskController extends Controller
     {
         return response()->json(['success' => true,
             'message' => 'Task completed successfully',
-            'points' => app(UserPointsService::class)->changePointsL($id)]);
+            'points' => app(UserService::class)->changePointsL($id)]);
     }
 
 }
