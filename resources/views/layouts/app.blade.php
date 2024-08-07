@@ -99,7 +99,7 @@
                     </div>
                     <div class="text-center mt-6 border-b text-3xl">
                         <a href="{{route('profile.update')}}"> {{$name}} </a>
-                    </div>  
+                    </div>
                     <div class="mt-6">
                         <div class="text-3xl text-center mb-4">Status</div>
                         <div class="w-full max-w-xl mx-auto">
@@ -322,7 +322,7 @@
                                         const button = completeD.querySelector("#complete-button");
                                         const paragraph = document.createElement('p');
                                         if(data.count > 1) {paragraph.textContent = 'COMPLETED: '.concat(String(data.count));} else {paragraph.textContent = 'COMPLETED';}
-                                        paragraph.classList.add('text-xl', 'absolute', 'bottom-4', 'right-4', 'text-black');
+                                        paragraph.classList.add('text-xl', 'absolute', 'bottom-6', 'right-4', 'text-black');
                                         button.parentNode.insertBefore(paragraph, button);
                                         button.remove();
                                     } else {
