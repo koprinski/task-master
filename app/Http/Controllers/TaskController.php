@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LongTaskRequest;
+use App\Http\Requests\TaskRequest;
 use App\Models\User;
 use App\Services\UserService;
 use Carbon\Carbon;
@@ -48,28 +50,19 @@ class TaskController extends Controller
     }
 
     //Create row functions
-    public function newHabit()
+    public function newHabit(TaskRequest $request)
     {
-        request()->validate(['name' => ['required']]);
-
-        Habit::create(['name' => request('name'), 'user_id' => auth()->id()]);
-
+        Habit::create(['name' => $request->get('name'), 'user_id' => auth()->id()]);
         return redirect('habits');
     }
-    public function newDaily()
+    public function newDaily(TaskRequest $request)
     {
-        request()->validate(['name' => ['required']]);
-
-        DailyTask::create(['name' => request('name'), 'user_id' => auth()->id()]);
-
+        DailyTask::create(['name' => $request->get('name'), 'user_id' => auth()->id()]);
         return redirect('daily');
     }
-    public function newLongTerm()
+    public function newLongTerm(LongTaskRequest $request)
     {
-        request()->validate(['name' => ['required'], 'date' => ['required', 'after:today']]);
-
-        LongTermTask::create(['name' => request('name'), 'date' => request('date'), 'user_id' => auth()->id()]);
-
+        LongTermTask::create(['name' => $request->get('name'), 'date' => $request->get('date'), 'user_id' => auth()->id()]);
         return redirect('longTerm');
     }
 

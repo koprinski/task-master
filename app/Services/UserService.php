@@ -30,7 +30,6 @@ class UserService
             $this->decrementUserPoints(self::POINTS_DECREMENT_L);
         }
 
-        $this->user->save();
         $longTask->delete();
 
         return $this->user->points;    }
@@ -44,7 +43,6 @@ class UserService
                 $this->decrementUserPoints(self::POINTS_DECREMENT_H);
                 break;
         }
-        $this->user->save();
         return $this->user->points;
     }
     public function changePointsD(int $id): array
@@ -55,7 +53,6 @@ class UserService
         $dailyTask->update(['completed' => true]);
         $dailyTask->increment('count');
 
-        $this->user->save();
         return ["points" => $this->user->points, "count" => $dailyTask['count']];
     }
     public function changePointsL(int $id): int
@@ -68,37 +65,37 @@ class UserService
             $this->incrementUserPoints(self::POINTS_INCREMENT_L_AFTER);
         }
 
-        $this->user->save();
         $longTask->delete();
         return $this->user->points;
     }
+    public function closeModal(): void
+    {
+        $this->user->update(['checkedModal' => true]);
+        $dailyTasks = $this->user->dailyTasks;
+        foreach ($dailyTasks as $dailyTask)
+        {
+        $this->checkDailyTaskCompletion($dailyTask);
+        }
+    }
+
+    public function checkDailyTaskCompletion(DailyTask $dailyTask): void
+    {
+        if ($dailyTask['completed']) {
+            $dailyTask->update(['completed' => false]);
+        } else {
+            $dailyTask->update(['count' => 0]);
+            $this->decrementUserPoints(self::POINTS_DECREMENT_D);
+        }
+    }
+
     private function incrementUserPoints(int $points): void
     {
         $this->user->points += $points;
-    }
-    public function closeModal(): void
-    {
-        $this->user->checkedModal = true;
         $this->user->save();
-
-        $dailyTasks = DailyTask::all();
-
-        foreach ($dailyTasks as $dailyTask) {
-            if ($dailyTask['completed']) {
-                $dailyTask->update(['completed' => false]);
-            } else {
-                $dailyTask->count = 0;
-                $dailyTask->save();
-
-                $user_id = $dailyTask['user_id'];
-                $user = User::findOrFail($user_id);
-                $user->points -= self::POINTS_DECREMENT_D;
-                $user->save();
-            }
-        }
     }
     private function decrementUserPoints(int $points): void
     {
         $this->user->points -= $points;
+        $this->user->save();
     }
 }

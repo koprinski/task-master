@@ -35,29 +35,16 @@ class UpdateDailyTasks implements ShouldQueue
             if ($currentUserTime->format('H:i') > '23:59' && $currentUserTime->format('H:i') < '01:00')
             {
                 $dailytasks = $user->dailytasks;
-                $uncompleted = 0;
-                foreach ($dailytasks as $dailytask)
-                {
-                    if (!$dailytask['completed'])
-                    {
-                        $uncompleted++;
-                    }
-                }
-                if ($user->checkedModal && $uncompleted > 0)
+                if ($user->checkedModal && $this->checkForUncompletedTasks($dailytasks))
                 {
                     $user->checkedModal = false;
                     $user->save();
                 }
                 else
                 {
-                    foreach ($dailytasks as $dailytask)
-                    {
-                        $dailytask->update(['completed' => false]);
-                        $dailytask->count = 0;
-                        $dailytask->save();
-                    }
-                    $user->points = $user->points - 150*$uncompleted;
+                    $user->points = $user->points - 150*$this->countUncompletedTasks($dailytasks);
                     $user->save();
+                    $this->undoComplete($dailytasks);
                 }
             }
 
@@ -65,5 +52,41 @@ class UpdateDailyTasks implements ShouldQueue
         }
 
     }
+
+    public function undoComplete($dailytasks): void
+    {
+        foreach ($dailytasks as $dailytask)
+        {
+            $dailytask->update(['completed' => false]);
+            $dailytask->update(['count' => 0]);
+        }
+    }
+    public function checkForUncompletedTasks($dailytasks): bool
+    {
+        $uncompleted = false;
+        foreach ($dailytasks as $dailytask)
+        {
+            if (!$dailytask['completed'])
+            {
+                $uncompleted = true;
+                break;
+            }
+        }
+        return $uncompleted;
+    }
+
+    public function countUncompletedTasks($dailytasks): int
+    {
+        $count = 0;
+        foreach ($dailytasks as $dailytask)
+        {
+            if (!$dailytask['completed'])
+            {
+               $count++;
+            }
+        }
+        return $count;
+    }
+
 
 }
