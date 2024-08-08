@@ -18,8 +18,14 @@ class DailyTaskFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'user_id' => User::factory(),
-        ];
+            'name' => fake()->name(),
+            'user_id' => 20,
+            ];
+    }
+
+    public function completed(): static
+    {
+      return $this->state(fn (array $attributes) => ['completed' => true,]);
+//      return $this->state(fn (array $attributes) => ['email_verified_at' => null,]);
     }
 }
