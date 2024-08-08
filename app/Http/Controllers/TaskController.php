@@ -76,15 +76,13 @@ class TaskController extends Controller
     //Delete row functions
     public function deleteHabit($id): \Illuminate\Http\JsonResponse
     {
-        $user = Auth::user();
         Habit::findOrFail($id)->delete();
-        return response()->json(['success' => true, 'message' => 'Task deleted successfully','points' => $user->points]);
+        return response()->json(['success' => true, 'message' => 'Task deleted successfully','points' => Auth::user()->points]);
     }
     public function deleteDaily($id): \Illuminate\Http\JsonResponse
     {
-        $user = Auth::user();
         DailyTask::findOrFail($id)->delete();
-        return response()->json(['success' => true, 'message' => 'Task deleted successfully','points' => $user->points]);
+        return response()->json(['success' => true, 'message' => 'Task deleted successfully','points' => Auth::user()->points]);
     }
     public function deleteLong($id):\Illuminate\Http\JsonResponse
     {
