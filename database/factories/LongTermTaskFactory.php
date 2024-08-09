@@ -20,7 +20,12 @@ class LongTermTaskFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'user_id' => User::factory(),
-            'date' => $this->faker->date(),
+            'date' => now()->addDays(rand(1, 30)),
         ];
+    }
+
+    public function expired(): static
+    {
+        return $this->state(fn (array $attributes) => ['date' => now()->subDays(rand(1, 30)),]);
     }
 }

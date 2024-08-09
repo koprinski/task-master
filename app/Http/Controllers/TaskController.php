@@ -79,22 +79,25 @@ class TaskController extends Controller
     }
     public function deleteLong($id):\Illuminate\Http\JsonResponse
     {
+        $userService = new UserService(Auth::id());
         return response()->json(['success' => true,
             'message' => 'Task completed successfully',
-            'points' => app(UserService::class)->deleteLongTask($id)]);
+            'points' => $userService->deleteLongTask($id)]);
     }
 
     //Points functions
     public function PointsHabit($check): \Illuminate\Http\JsonResponse
     {
+        $userService = new UserService(Auth::id());
         return response()->json(['success' => true,
             'message' => 'Points changed successfully',
-            'points' => app(UserService::class)->changePointsH($check)]);
+            'points' => $userService->changePointsH($check)]);
     }
 
     public function completeD($id): \Illuminate\Http\JsonResponse
     {
-        $userStats = app(UserService::class)->changePointsD($id);
+        $userService = new UserService(Auth::id());
+        $userStats = $userService->changePointsD($id);
         return response()->json(['success' => true,
             'message' => 'Task completed successfully',
             'points' => $userStats['points'],
@@ -103,9 +106,10 @@ class TaskController extends Controller
 
     public function completeL($id): \Illuminate\Http\JsonResponse
     {
+        $userService = new UserService(Auth::id());
         return response()->json(['success' => true,
             'message' => 'Task completed successfully',
-            'points' => app(UserService::class)->changePointsL($id)]);
+            'points' => $userService->changePointsL($id)]);
     }
 
 }

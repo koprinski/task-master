@@ -20,12 +20,13 @@ class DailyTaskFactory extends Factory
         return [
             'name' => fake()->name(),
             'user_id' => 20,
+            'completed' => false,
+            'count' => 0
             ];
     }
 
     public function completed(): static
     {
       return $this->state(fn (array $attributes) => ['completed' => true,]);
-//      return $this->state(fn (array $attributes) => ['email_verified_at' => null,]);
     }
 }

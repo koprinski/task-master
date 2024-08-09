@@ -9,9 +9,9 @@ use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-class CompletionTest extends TestCase
+class UpdateDailyTest extends TestCase
 {
-//    use RefreshDatabase;
+    use RefreshDatabase;
     /**
      * A basic unit test example.
      */
@@ -50,12 +50,5 @@ class CompletionTest extends TestCase
         $this->assertEquals(0, $response);
     }
 
-//    public function test_changePointsH(): void
-//    {
-//        $user = User::factory()->make();
-//        $this->actingAs($user)
-//        $response = app(UserService::class)->changePointsH('+');
-//
-//        $this->assertEquals(600, $response);
-//    }
+
 }

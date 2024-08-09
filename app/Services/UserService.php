@@ -18,9 +18,9 @@ class UserService
     private const POINTS_INCREMENT_L_BEFORE = 300;
     private const POINTS_INCREMENT_L_AFTER = 50;
     private const POINTS_DECREMENT_L = 400;
-    public function __construct()
+    public function __construct($id)
     {
-        $this->user = Auth::user();
+        $this->user = User::FindOrFail($id);
     }
     public function deleteLongTask(int $id): int
     {
