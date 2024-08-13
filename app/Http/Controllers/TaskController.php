@@ -32,7 +32,8 @@ class TaskController extends Controller
 
     public function closeModal(): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
     {
-        app(UserService::class)->closeModal();
+        $userService = new UserService(Auth::id());
+        $userService->closeModal();
         return redirect('daily');
     }
     // Insert views
@@ -81,7 +82,7 @@ class TaskController extends Controller
     {
         $userService = new UserService(Auth::id());
         return response()->json(['success' => true,
-            'message' => 'Task completed successfully',
+            'message' => 'Task deleted successfully',
             'points' => $userService->deleteLongTask($id)]);
     }
 

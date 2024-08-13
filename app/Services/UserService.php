@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class UserService
-{
+{   
     private $user;
 
     private const POINTS_INCREMENT_H = 50;

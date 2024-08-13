@@ -71,7 +71,7 @@ class AuthTests extends TestCase
     {
         $user = User::factory()->create([
             'id' => random_int(1, 100),
-            'password' => bcrypt($password = 'i-love-laravel'),
+            'password' => bcrypt($password = 'password'),
         ]);
 
         $response = $this->post('/login', [
