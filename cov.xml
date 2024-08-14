@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1723627071">
-  <project timestamp="1723627071">
+<coverage generated="1723642126">
+  <project timestamp="1723642126">
     <package name="App\Http\Controllers\Auth">
       <file name="/home/vagrant/TaskMaster/app/Http/Controllers/Auth/AuthenticatedSessionController.php">
         <class name="App\Http\Controllers\Auth\AuthenticatedSessionController" namespace="App\Http\Controllers\Auth">
@@ -339,20 +339,21 @@
     <package name="App\Jobs">
       <file name="/home/vagrant/TaskMaster/app/Jobs/Remind.php">
         <class name="App\Jobs\Remind" namespace="App\Jobs">
-          <metrics complexity="7" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="1" elements="11" coveredelements="2"/>
+          <metrics complexity="7" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
         </class>
-        <line num="22" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="25" type="stmt" count="1"/>
-        <line num="30" type="method" name="handle" visibility="public" complexity="6" crap="42" count="0"/>
-        <line num="32" type="stmt" count="0"/>
-        <line num="33" type="stmt" count="0"/>
-        <line num="35" type="stmt" count="0"/>
-        <line num="36" type="stmt" count="0"/>
-        <line num="38" type="stmt" count="0"/>
-        <line num="39" type="stmt" count="0"/>
-        <line num="41" type="stmt" count="0"/>
-        <line num="43" type="stmt" count="0"/>
-        <metrics loc="50" ncloc="43" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="1" elements="11" coveredelements="2"/>
+        <line num="22" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="25" type="stmt" count="3"/>
+        <line num="30" type="method" name="handle" visibility="public" complexity="6" crap="6" count="2"/>
+        <line num="32" type="stmt" count="2"/>
+        <line num="33" type="stmt" count="2"/>
+        <line num="35" type="stmt" count="2"/>
+        <line num="36" type="stmt" count="2"/>
+        <line num="38" type="stmt" count="2"/>
+        <line num="39" type="stmt" count="2"/>
+        <line num="41" type="stmt" count="2"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="44" type="stmt" count="1"/>
+        <metrics loc="51" ncloc="44" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
       </file>
       <file name="/home/vagrant/TaskMaster/app/Jobs/Troll.php">
         <class name="App\Jobs\Troll" namespace="App\Jobs">
@@ -366,15 +367,15 @@
       </file>
       <file name="/home/vagrant/TaskMaster/app/Jobs/UpdateDailyTasks.php">
         <class name="App\Jobs\UpdateDailyTasks" namespace="App\Jobs">
-          <metrics complexity="15" methods="5" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="5" elements="31" coveredelements="6"/>
+          <metrics complexity="15" methods="5" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="1" elements="31" coveredelements="2"/>
         </class>
-        <line num="21" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="24" type="stmt" count="1"/>
-        <line num="29" type="method" name="handle" visibility="public" complexity="6" crap="15.28" count="1"/>
-        <line num="31" type="stmt" count="1"/>
-        <line num="32" type="stmt" count="1"/>
-        <line num="34" type="stmt" count="1"/>
-        <line num="35" type="stmt" count="1"/>
+        <line num="21" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="24" type="stmt" count="3"/>
+        <line num="29" type="method" name="handle" visibility="public" complexity="6" crap="42" count="0"/>
+        <line num="31" type="stmt" count="0"/>
+        <line num="32" type="stmt" count="0"/>
+        <line num="34" type="stmt" count="0"/>
+        <line num="35" type="stmt" count="0"/>
         <line num="37" type="stmt" count="0"/>
         <line num="38" type="stmt" count="0"/>
         <line num="40" type="stmt" count="0"/>
@@ -382,44 +383,44 @@
         <line num="45" type="stmt" count="0"/>
         <line num="46" type="stmt" count="0"/>
         <line num="47" type="stmt" count="0"/>
-        <line num="56" type="method" name="undoComplete" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="53" type="method" name="undoComplete" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="55" type="stmt" count="0"/>
+        <line num="57" type="stmt" count="0"/>
         <line num="58" type="stmt" count="0"/>
-        <line num="60" type="stmt" count="0"/>
-        <line num="61" type="stmt" count="0"/>
-        <line num="64" type="method" name="checkForUncompletedTasks" visibility="public" complexity="3" crap="12" count="0"/>
+        <line num="61" type="method" name="checkForUncompletedTasks" visibility="public" complexity="3" crap="12" count="0"/>
+        <line num="63" type="stmt" count="0"/>
+        <line num="64" type="stmt" count="0"/>
         <line num="66" type="stmt" count="0"/>
-        <line num="67" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="0"/>
         <line num="69" type="stmt" count="0"/>
-        <line num="71" type="stmt" count="0"/>
         <line num="72" type="stmt" count="0"/>
-        <line num="75" type="stmt" count="0"/>
-        <line num="78" type="method" name="countUncompletedTasks" visibility="public" complexity="3" crap="12" count="0"/>
+        <line num="75" type="method" name="countUncompletedTasks" visibility="public" complexity="3" crap="12" count="0"/>
+        <line num="77" type="stmt" count="0"/>
+        <line num="78" type="stmt" count="0"/>
         <line num="80" type="stmt" count="0"/>
-        <line num="81" type="stmt" count="0"/>
-        <line num="83" type="stmt" count="0"/>
+        <line num="82" type="stmt" count="0"/>
         <line num="85" type="stmt" count="0"/>
-        <line num="88" type="stmt" count="0"/>
-        <metrics loc="93" ncloc="87" classes="1" methods="5" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="5" elements="31" coveredelements="6"/>
+        <metrics loc="90" ncloc="84" classes="1" methods="5" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="1" elements="31" coveredelements="2"/>
       </file>
     </package>
     <package name="App\Mail">
       <file name="/home/vagrant/TaskMaster/app/Mail/Reminder.php">
         <class name="App\Mail\Reminder" namespace="App\Mail">
-          <metrics complexity="4" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="12" coveredelements="0"/>
+          <metrics complexity="4" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="12" coveredelements="12"/>
         </class>
-        <line num="21" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="24" type="stmt" count="0"/>
-        <line num="29" type="method" name="envelope" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="31" type="stmt" count="0"/>
-        <line num="32" type="stmt" count="0"/>
-        <line num="33" type="stmt" count="0"/>
-        <line num="39" type="method" name="content" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="41" type="stmt" count="0"/>
-        <line num="42" type="stmt" count="0"/>
-        <line num="43" type="stmt" count="0"/>
-        <line num="51" type="method" name="attachments" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="53" type="stmt" count="0"/>
-        <metrics loc="56" ncloc="41" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="12" coveredelements="0"/>
+        <line num="21" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="24" type="stmt" count="2"/>
+        <line num="29" type="method" name="envelope" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="31" type="stmt" count="2"/>
+        <line num="32" type="stmt" count="2"/>
+        <line num="33" type="stmt" count="2"/>
+        <line num="39" type="method" name="content" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="51" type="method" name="attachments" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="53" type="stmt" count="1"/>
+        <metrics loc="56" ncloc="41" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="12" coveredelements="12"/>
       </file>
       <file name="/home/vagrant/TaskMaster/app/Mail/TrollMail.php">
         <class name="App\Mail\TrollMail" namespace="App\Mail">
@@ -443,11 +444,9 @@
     <package name="App\Models">
       <file name="/home/vagrant/TaskMaster/app/Models/DailyTask.php">
         <class name="App\Models\DailyTask" namespace="App\Models">
-          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </class>
-        <line num="13" type="method" name="user" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="15" type="stmt" count="0"/>
-        <metrics loc="18" ncloc="18" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        <metrics loc="15" ncloc="15" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </file>
       <file name="/home/vagrant/TaskMaster/app/Models/Habit.php">
         <class name="App\Models\Habit" namespace="App\Models">
@@ -463,20 +462,20 @@
       </file>
       <file name="/home/vagrant/TaskMaster/app/Models/User.php">
         <class name="App\Models\User" namespace="App\Models">
-          <metrics complexity="4" methods="4" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="4" elements="11" coveredelements="5"/>
+          <metrics complexity="4" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="5" elements="11" coveredelements="7"/>
         </class>
-        <line num="46" type="method" name="casts" visibility="protected" complexity="1" crap="1" count="1"/>
-        <line num="48" type="stmt" count="1"/>
-        <line num="49" type="stmt" count="1"/>
-        <line num="50" type="stmt" count="1"/>
-        <line num="51" type="stmt" count="1"/>
+        <line num="46" type="method" name="casts" visibility="protected" complexity="1" crap="1" count="3"/>
+        <line num="48" type="stmt" count="3"/>
+        <line num="49" type="stmt" count="3"/>
+        <line num="50" type="stmt" count="3"/>
+        <line num="51" type="stmt" count="3"/>
         <line num="54" type="method" name="habits" visibility="public" complexity="1" crap="2" count="0"/>
         <line num="56" type="stmt" count="0"/>
-        <line num="58" type="method" name="dailyTasks" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="60" type="stmt" count="0"/>
+        <line num="58" type="method" name="dailyTasks" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="60" type="stmt" count="2"/>
         <line num="62" type="method" name="longTermTasks" visibility="public" complexity="1" crap="2" count="0"/>
         <line num="64" type="stmt" count="0"/>
-        <metrics loc="69" ncloc="53" classes="1" methods="4" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="4" elements="11" coveredelements="5"/>
+        <metrics loc="69" ncloc="53" classes="1" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="5" elements="11" coveredelements="7"/>
       </file>
     </package>
     <package name="App\Providers">
@@ -484,10 +483,10 @@
         <class name="App\Providers\AppServiceProvider" namespace="App\Providers">
           <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
         </class>
-        <line num="12" type="method" name="register" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="15" type="stmt" count="1"/>
-        <line num="20" type="method" name="boot" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="23" type="stmt" count="1"/>
+        <line num="12" type="method" name="register" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="15" type="stmt" count="3"/>
+        <line num="20" type="method" name="boot" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="23" type="stmt" count="3"/>
         <metrics loc="25" ncloc="17" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
       </file>
     </package>
@@ -562,6 +561,6 @@
         <metrics loc="18" ncloc="15" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
       </file>
     </package>
-    <metrics files="30" loc="1299" ncloc="1101" classes="27" methods="80" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="281" coveredstatements="12" elements="361" coveredelements="17"/>
+    <metrics files="30" loc="1294" ncloc="1096" classes="26" methods="79" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="281" coveredstatements="26" elements="360" coveredelements="37"/>
   </project>
 </coverage>

@@ -33,7 +33,7 @@ class Remind implements ShouldQueue
         foreach ($users as $user)
         {
             $currentUserTime = now()->setTimezone($user->timezone);
-            if ($currentUserTime->format('H:i') > '12:59' && $currentUserTime->format('H:i') < '14:00')
+            if ($currentUserTime->format('H:i') > '17:00' && $currentUserTime->format('H:i') < '18:00')
             {
                 $dailytasks = $user->dailytasks;
                 foreach ($dailytasks as $dailytask)
@@ -41,6 +41,7 @@ class Remind implements ShouldQueue
                     if (!$dailytask['completed'])
                     {
                         Mail::to($user->email)->send(new Reminder($user));
+                        break;
                     }
                 }
             }

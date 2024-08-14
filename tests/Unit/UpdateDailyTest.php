@@ -62,32 +62,62 @@ class UpdateDailyTest extends TestCase
     }
 
 
-//    public function test_job_processes_users_correctly()
-//    {
-//        $user = User::factory()->create();
-//
-//        $dailytask1 = DailyTask::factory()->create(['user_id' => $user->id]);
-//        $dailytask2 = DailyTask::factory()->create(['user_id' => $user->id]);
-//        $dailytask3 = DailyTask::factory()->completed()->create(['user_id' => $user->id]);
-//
-//
-//        // Mock the current time to be within the range
-//        $this->travelTo(now()->setTimezone('America/New_York')->setTime(0, 30));        // Dispatch the job
-//        app(UpdateDailyTasks::class)->handle();
-//        // Check if the user's points were deducted correctly
-//        $user->refresh();
-//
-//
-//        // Check if the user's checkedModal was updated
-////        $this->assertFalse($user->checkedModal);
-//
-//        // Check if the daily tasks were undone
-//        $this->assertFalse($dailytask1->fresh()->completed);
-//        $this->assertFalse($dailytask2->fresh()->completed);
-//        $this->assertFalse($dailytask3->fresh()->completed);
-////        $this->assertEquals(200, $user->points);
-//    }
+    public function test_handle_if_checked_modal_is_true(): void
+    {
+        $user = User::factory()->create();
+
+        $dailytask1 = DailyTask::factory()->create(['user_id' => $user->id]);
+        $dailytask2 = DailyTask::factory()->create(['user_id' => $user->id]);
 
 
+        $this->travelTo(now()->setTimezone('America/New_York')->startOfDay()->addMinutes(30));
+        app(UpdateDailyTasks::class)->handle();
+        $user->refresh();
 
+
+        $this->assertFalse($user->checkedModal);
+        $this->assertFalse($dailytask1->fresh()->completed);
+        $this->assertFalse($dailytask2->fresh()->completed);
+    }
+
+    public function test_handle_if_checked_modal_is_false(): void
+    {
+        $user = User::factory()->create(['checkedModal' => false]);
+
+        $dailytask1 = DailyTask::factory()->create(['user_id' => $user->id]);
+        $dailytask2 = DailyTask::factory()->create(['user_id' => $user->id]);
+        $dailytask3 = DailyTask::factory()->completed()->create(['user_id' => $user->id]);
+
+
+        // Mock the current time to be within the range
+        $this->travelTo(now()->setTimezone('America/New_York')->startOfDay()->addMinutes(30));
+        app(UpdateDailyTasks::class)->handle();
+        // Check if the user's points were deducted correctly
+        $user->refresh();
+
+
+        $this->assertFalse($user->checkedModal);
+        $this->assertFalse($dailytask1->fresh()->completed);
+        $this->assertFalse($dailytask2->fresh()->completed);
+        $this->assertFalse($dailytask3->fresh()->completed);
+        $this->assertEquals(200, $user->points);
+    }
+
+    public function test_handle_if_all_tasks_completed(): void
+    {
+        $user = User::factory()->create();
+
+        $dailytask1 = DailyTask::factory()->completed()->create(['user_id' => $user->id]);
+        $dailytask2 = DailyTask::factory()->completed()->create(['user_id' => $user->id]);
+
+
+        $this->travelTo(now()->setTimezone('America/New_York')->startOfDay()->addMinutes(30));
+        app(UpdateDailyTasks::class)->handle();
+        $user->refresh();
+
+
+        $this->assertTrue($user->checkedModal);
+        $this->assertFalse($dailytask1->fresh()->completed);
+        $this->assertFalse($dailytask2->fresh()->completed);
+    }
 }

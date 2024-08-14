@@ -32,7 +32,7 @@ class UpdateDailyTasks implements ShouldQueue
         foreach ($users as $user)
         {
             $currentUserTime = now()->setTimezone($user->timezone);
-            if ($currentUserTime->format('H:i') > '23:59' && $currentUserTime->format('H:i') < '01:00')
+            if ($currentUserTime->format('H:i') > '00:00' && $currentUserTime->format('H:i') < '01:00')
             {
                 $dailytasks = $user->dailytasks;
                 if ($user->checkedModal && $this->checkForUncompletedTasks($dailytasks))
@@ -47,10 +47,7 @@ class UpdateDailyTasks implements ShouldQueue
                     $this->undoComplete($dailytasks);
                 }
             }
-
-
         }
-
     }
 
     public function undoComplete($dailytasks): void
