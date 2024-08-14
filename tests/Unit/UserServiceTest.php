@@ -133,16 +133,34 @@ class UserServiceTest extends TestCase
 
     }
 
-    public function test_closeModal(): void
+    public function test_closeModal_all_tasks_completed(): void
     {
         //arrange
         $user = User::factory()->create();
         $userService = new UserService($user['id']);
+        $dailyTask = DailyTask::factory()->completed()->create(['user_id'=>$user['id']]);
 
         //act
         $userService->closeModal();
 
         //assert
         $this->assertTrue($user->fresh()->checkedModal);
+        $this->assertFalse($dailyTask->fresh()->completed);
+    }
+    public function test_closeModal_all_tasks_not_completed(): void
+    {
+        //arrange
+        $user = User::factory()->create();
+        $userService = new UserService($user['id']);
+        $dailyTask = DailyTask::factory()->create(['user_id'=>$user['id']]);
+
+        //act
+        $userService->closeModal();
+
+        //assert
+        $this->assertTrue($user->fresh()->checkedModal);
+        $this->assertEquals(0, $dailyTask->fresh()->count);
+        $this->assertEquals(350, $user->fresh()->points);
+        $this->assertFalse($dailyTask->fresh()->completed);
     }
 }

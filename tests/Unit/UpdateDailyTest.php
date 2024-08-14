@@ -15,7 +15,7 @@ class UpdateDailyTest extends TestCase
     /**
      * A basic unit test example.
      */
-    public function test_checkDailyTaskCompletionCompleted(): void
+    public function test_check_daily_task_completion_completed(): void
     {
        $dailytasks = DailyTask::factory()->count(5)->completed()->create();
 
@@ -24,7 +24,7 @@ class UpdateDailyTest extends TestCase
        $this->assertFalse($respone);
     }
 
-    public function test_checkDailyTaskCompletionNotCompleted(): void
+    public function test_check_daily_task_completion_not_completed(): void
     {
         $dailytasks = DailyTask::factory()->count(5)->create();
 
@@ -33,7 +33,7 @@ class UpdateDailyTest extends TestCase
         $this->assertTrue($respone);
     }
 
-    public function test_countUncompletedTasks(): void
+    public function test_count_uncompleted_tasks(): void
     {
         $dailytasks = DailyTask::factory()->count(5)->create();
 
@@ -41,7 +41,7 @@ class UpdateDailyTest extends TestCase
 
         $this->assertEquals(5, $response);
     }
-    public function test_countUncompletedTasksIfCompleted(): void
+    public function test_count_uncompleted_tasks_if_completed(): void
     {
         $dailytasks = DailyTask::factory()->count(5)->completed()->create();
 
@@ -49,6 +49,45 @@ class UpdateDailyTest extends TestCase
 
         $this->assertEquals(0, $response);
     }
+
+    public function test_undo_complete(): void
+    {
+        $dailyTasks = DailyTask::factory()->count(5)->completed()->create();
+
+        app(UpdateDailyTasks::class)->undoComplete($dailyTasks);
+
+        $this->assertFalse($dailyTasks[0]->fresh()->completed);
+        $this->assertEquals(0, $dailyTasks[0]->fresh()->count);
+
+    }
+
+
+//    public function test_job_processes_users_correctly()
+//    {
+//        $user = User::factory()->create();
+//
+//        $dailytask1 = DailyTask::factory()->create(['user_id' => $user->id]);
+//        $dailytask2 = DailyTask::factory()->create(['user_id' => $user->id]);
+//        $dailytask3 = DailyTask::factory()->completed()->create(['user_id' => $user->id]);
+//
+//
+//        // Mock the current time to be within the range
+//        $this->travelTo(now()->setTimezone('America/New_York')->setTime(0, 30));        // Dispatch the job
+//        app(UpdateDailyTasks::class)->handle();
+//        // Check if the user's points were deducted correctly
+//        $user->refresh();
+//
+//
+//        // Check if the user's checkedModal was updated
+////        $this->assertFalse($user->checkedModal);
+//
+//        // Check if the daily tasks were undone
+//        $this->assertFalse($dailytask1->fresh()->completed);
+//        $this->assertFalse($dailytask2->fresh()->completed);
+//        $this->assertFalse($dailytask3->fresh()->completed);
+////        $this->assertEquals(200, $user->points);
+//    }
+
 
 
 }
