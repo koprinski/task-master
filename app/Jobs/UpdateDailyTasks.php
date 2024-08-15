@@ -38,14 +38,13 @@ class UpdateDailyTasks implements ShouldQueue
                 if ($user->checkedModal && $this->checkForUncompletedTasks($dailytasks))
                 {
                     $user->checkedModal = false;
-                    $user->save();
                 }
                 else
                 {
                     $user->points = $user->points - 150*$this->countUncompletedTasks($dailytasks);
-                    $user->save();
                     $this->undoComplete($dailytasks);
                 }
+                $user->save();
             }
         }
     }

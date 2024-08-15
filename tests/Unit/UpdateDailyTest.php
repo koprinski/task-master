@@ -106,7 +106,6 @@ class UpdateDailyTest extends TestCase
     public function test_handle_if_all_tasks_completed(): void
     {
         $user = User::factory()->create();
-
         $dailytask1 = DailyTask::factory()->completed()->create(['user_id' => $user->id]);
         $dailytask2 = DailyTask::factory()->completed()->create(['user_id' => $user->id]);
 

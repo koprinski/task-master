@@ -290,5 +290,9 @@ class TaskTest extends TestCase
             ->assertRedirect('/habits');
         $user->refresh();
 
-        $this->assertEquals($file->getClientOriginalName(), $user->fresh()->image);    }
+        $this->assertEquals($file->getClientOriginalName(), $user->fresh()->image);
+    }
+
+
+
 }
